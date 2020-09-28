@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.WebPages.Html;
+using System.Web.Mvc;
 
 namespace Computer_Reparatieshop_Mockdatabase.ViewModels
 {
@@ -14,12 +14,5 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModels
         public ModelReparationInProgress basemodel { get; set; }
 
         public SelectListItem status { get; set; }
-        public int aantalinafwachting { get; set; }
-
-        public int aantalinbehandeling { get; set; }
-
-        public int aantalwachtoponderdelen { get; set; }
-
-        public int aantaalklaar { get; set; }
     }
 }

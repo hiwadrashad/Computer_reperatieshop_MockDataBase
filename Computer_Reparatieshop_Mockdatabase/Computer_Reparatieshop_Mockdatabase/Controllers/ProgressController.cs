@@ -1,4 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
+using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
                 SingletonData.Singleton.StoreReparationInProgressInitalized = true;
             }
-            return View();
+
+            return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
         }
 
-        // GET: Progress/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+
 
         // GET: Progress/Create
         public ActionResult Create()
@@ -34,10 +32,16 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ProgressViewModel progressviewmodel)
         {
             try
             {
+                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
+                {
+                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
+                }
+                SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");
@@ -49,19 +53,29 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Progress/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(ProgressViewModel model)
         {
-            return View();
+            if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
+            {
+                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                SingletonData.Singleton.StoreReparationInProgressInitalized = true;
+            }
+            return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
         }
 
         // POST: Progress/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(ProgressViewModel model, int i = 0)
         {
             try
             {
                 // TODO: Add update logic here
-
+                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
+                {
+                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
+                }
+                SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -71,17 +85,28 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Progress/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(ProgressViewModel model)
         {
-            return View();
+            if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
+            {
+                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                SingletonData.Singleton.StoreReparationInProgressInitalized = true;
+            }
+            return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
         }
 
         // POST: Progress/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(ProgressViewModel model, int i = 0)
         {
             try
             {
+                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
+                {
+                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
+                }
+                var item = SingletonData.Singleton.StoreReparationInProgress.RemoveModelByModel(model);
                 // TODO: Add delete logic here
 
                 return RedirectToAction("Index");

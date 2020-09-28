@@ -134,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonData\Singleton.cs" />
     <Compile Include="ViewModels\DoneViewModel.cs" />
+    <Compile Include="ViewModels\OverviewViewmodel.cs" />
     <Compile Include="ViewModels\ProgressViewModel.cs" />
     <Compile Include="ViewModels\RequestViewModel.cs" />
   </ItemGroup>
@@ -168,11 +169,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Progress\Index.cshtml" />
+    <Content Include="Views\Progress\Create.cshtml" />
+    <Content Include="Views\Progress\Delete.cshtml" />
+    <Content Include="Views\Progress\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Done\" />
-    <Folder Include="Views\Progress\" />
     <Folder Include="Views\Request\" />
   </ItemGroup>
   <ItemGroup>

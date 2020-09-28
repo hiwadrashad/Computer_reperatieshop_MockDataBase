@@ -2,8 +2,10 @@
 using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
 namespace Computer_Reparatieshop_Mockdatabase.DAL
@@ -16,7 +18,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             items = new List<DoneViewModel>()
             {
-            new DoneViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationDone() { Id = Guid.NewGuid().ToString(), Klant = "John Smith", Omschrijving = "reparatie airbag", PrijsArbeid = 40, PrijsProducten = 300, Reparateur = "Mitch Summers", Totaal = 340 },onderdelen = }
+            new DoneViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationDone() { Id = Guid.NewGuid().ToString(), Klant = "John Smith", Omschrijving = "reparatie airbag", PrijsArbeid = 40, PrijsProducten = 300, Reparateur = "Mitch Summers", Totaal = 340 },onderdelen = "Wiel, stuur, uitlaat" }
             };
         }
 
@@ -53,6 +55,11 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return items;
         }
 
+        public int CountItemsList()
+        {
+            return items.Count();
+        }
+
     }
 
     public class MockDataServiceReparationInProgress : IDataService<ProgressViewModel>
@@ -63,7 +70,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             items = new List<ProgressViewModel>()
             {
-                new ProgressViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationInProgress() { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25)}, aantaalklaar = 12, aantalinafwachting = 21, aantalinbehandeling= 9, aantalwachtoponderdelen = 5}
+                new ProgressViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationInProgress() { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25)}, status = new SelectListItem { Text ="in afwachting", Value ="in afwachting"}}
             };
         }
 
@@ -95,11 +102,69 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return (items.FirstOrDefault(s => s.id == id));
         }
 
+        public bool RemoveModelByModel(ProgressViewModel model)
+        {
+            var item = items.Where(x => x.id == model.id).FirstOrDefault();
+            items.Remove(item);
+            return (true);
+        }
+
+        public ProgressViewModel GetItemByItem(ProgressViewModel model)
+        {
+           
+            return items.FirstOrDefault(s => s.id == model.id);
+        }
+
         public List<ProgressViewModel> ReturnList()
         {
             return items;
         }
 
+        public int CountInBehandeling()
+        {
+            return items.Where(x => x.status == new System.Web.Mvc.SelectListItem { Text = "in afwachting", Value = "in afwachting" }).Count();
+        }
+
+        public int CountWachtenOpOnderdelen()
+        {
+            return items.Where(x => x.status == new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen" }).Count();
+        }
+
+    }
+
+    public class MockDataServiceOverview
+    {
+        public readonly OverviewViewmodel items;
+
+        public MockDataServiceOverview()
+        {
+            items = new OverviewViewmodel()
+            {
+                id = Guid.NewGuid().ToString(),
+                aantaalklaar = SingletonData.Singleton.StoreReparationDone.CountItemsList(),
+                aantalinafwachting = SingletonData.Singleton.StoreClientRequest.CountItemsList(),
+                aantalinbehandeling = SingletonData.Singleton.StoreReparationInProgress.CountInBehandeling(),
+                aantalwachtoponderdelen = SingletonData.Singleton.StoreReparationInProgress.CountWachtenOpOnderdelen()
+            };
+        }
+    }
+
+    public class MemoryPostedFile : HttpPostedFileBase
+    {
+        private readonly byte[] fileBytes;
+
+        public MemoryPostedFile(byte[] fileBytes, string fileName = null)
+        {
+            this.fileBytes = fileBytes;
+            this.FileName = fileName;
+            this.InputStream = new MemoryStream(fileBytes);
+        }
+
+        public override int ContentLength => fileBytes.Length;
+
+        public override string FileName { get; }
+
+        public override Stream InputStream { get; }
     }
 
     public class MockDataServiceClientRequest : IDataService<RequestViewModel>
@@ -110,7 +175,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             items = new List<RequestViewModel>()
             {
-                new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =  }
+                new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes("Images/KoplampImage.jpg"))  }
             };
         }
 
@@ -147,5 +212,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return items;
         }
 
+        public int CountItemsList()
+        {
+            return items.Count();
+        }
     }
 }
