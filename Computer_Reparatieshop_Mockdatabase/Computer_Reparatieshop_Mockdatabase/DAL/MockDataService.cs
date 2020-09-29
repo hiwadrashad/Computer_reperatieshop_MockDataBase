@@ -174,6 +174,13 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
                 return false;
             }
         }
+
+        public bool UpdateErrorMessage(LoginModel item)
+        {
+            var oldItem = items.Where((LoginModel arg) => arg.Id == item.Id).FirstOrDefault();
+            oldItem.LoginErrorMessage = "Wrong Username or Password";
+            return true;
+        }
     }
 
     public class MemoryPostedFile : HttpPostedFileBase

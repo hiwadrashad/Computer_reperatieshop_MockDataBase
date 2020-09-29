@@ -1,4 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
+using Computer_Reparatieshop_Mockdatabase.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,30 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult Login()
         {
+            if (SingletonData.Singleton.StoreLoginInitialized == false)
+            {
+                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
+                SingletonData.Singleton.StoreLoginInitialized = true;
+            }
             return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult Autherize(LoginModel userModel)
+        {
+            if (SingletonData.Singleton.StoreLoginInitialized == false)
+            {
+                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
+                SingletonData.Singleton.StoreLoginInitialized = true;
+            }
+            var UserDetails = SingletonData.Singleton.StoreLogin.Login(userModel.username, userModel.password);
+            if (UserDetails == false)
+            {
+                userModel.LoginErrorMessage = "Wrong username or password";
+                return View("Login", userModel);
+            }
+            return View("Adminarea");
         }
 
         public ActionResult ChooseLoginOption()

@@ -9,8 +9,22 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Adminarea</title>
+    <style>
+        #login-div {
+            position: absolute;
+            left: 30%;
+            top: 40%;
+            border: 1px solid #ccc;
+            padding: 10px 10px;
+            text-align: center
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+    </style>
 </head>
-<body>
+<body id="login-div">
     <div>
         @Html.ActionLink("List of all executed jobs", "Index", "Done", null, null)
         @Html.ActionLink("List of all jobs in progress", "Index", "Progress", null, null)

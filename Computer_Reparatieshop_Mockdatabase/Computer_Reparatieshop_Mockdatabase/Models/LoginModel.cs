@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -10,8 +11,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public string Id { get; set; }
 
+        [Required(ErrorMessage = "This field is required")]
         public string username { get; set; }
 
+        [Required(ErrorMessage = "This field is required")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
+
+        public string LoginErrorMessage { get; set; }
     }
 }

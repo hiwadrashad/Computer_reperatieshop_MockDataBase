@@ -10,8 +10,39 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Create</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/abstract.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size:cover;
+            background-position: 50%;
+            color: white;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+        }
+
+        #button {
+        color: white;
+        background-color:aqua;
+        background-image: url(../../Images/button_generate.png);
+        }
+        
+    </style>
 </head>
-<body>
+<body id="login-div">
+    <div id="login-div">
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     
@@ -21,7 +52,7 @@
         @Html.AntiForgeryToken()
         
     <div class="form-horizontal">
-        <h4>DoneViewModel</h4>
+        <h4>Submit</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -82,7 +113,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input  id="button" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -91,5 +122,6 @@
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
+        </div>
 </body>
 </html>

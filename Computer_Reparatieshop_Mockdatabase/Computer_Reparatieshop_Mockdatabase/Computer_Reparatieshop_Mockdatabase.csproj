@@ -148,6 +148,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\abstract.jpg" />
+    <Content Include="Images\button_generate.png" />
     <Content Include="Images\KoplampImage.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -181,6 +183,7 @@
     <Content Include="Views\Request\Create.cshtml" />
     <Content Include="Views\Request\Index.cshtml" />
     <Content Include="Views\Request\Adminarea.cshtml" />
+    <Content Include="Views\Request\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
