@@ -13,6 +13,5 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModels
         public ModelReparationDone basemodel { get; set; }
         public string onderdelen { get; set; }
 
-
     }
 }

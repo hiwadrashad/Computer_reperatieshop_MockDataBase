@@ -1,4 +1,6 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
+using Computer_Reparatieshop_Mockdatabase.SingletonData;
+using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,28 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
                 SingletonData.Singleton.StoreReparationDoneInitialized = true;
             }
-            return View();
+
+            foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+            {
+                item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+            }
+            return View(SingletonData.Singleton.StoreReparationDone.ReturnList());
         }
 
         // GET: Done/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(DoneViewModel model)
         {
-            return View();
+            if (SingletonData.Singleton.StoreReparationDoneInitialized == false)
+            {
+                SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
+                SingletonData.Singleton.StoreReparationDoneInitialized = true;
+            }
+
+            foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+            {
+                item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+            }
+            return View(model);
         }
 
         // GET: Done/Create
@@ -34,12 +51,23 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Done/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(DoneViewModel model)
         {
             try
             {
                 // TODO: Add insert logic here
+                if (SingletonData.Singleton.StoreReparationDoneInitialized == false)
+                {
+                    SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
+                    SingletonData.Singleton.StoreReparationDoneInitialized = true;
+                }
 
+                foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+                {
+                    item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+                }
+
+                SingletonData.Singleton.StoreReparationDone.AddItem(model);
                 return RedirectToAction("Index");
             }
             catch
@@ -48,48 +76,5 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
         }
 
-        // GET: Done/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Done/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Done/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Done/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

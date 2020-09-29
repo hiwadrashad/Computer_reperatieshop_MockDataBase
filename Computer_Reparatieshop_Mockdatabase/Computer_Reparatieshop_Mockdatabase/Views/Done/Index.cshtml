@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.ViewModels.DoneViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.Klant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.PrijsArbeid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.PrijsProducten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.Reparateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.Totaal)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.basemodel.Klant)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.basemodel.PrijsArbeid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.basemodel.PrijsProducten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.basemodel.Reparateur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.basemodel.Totaal)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        </td>
+    </tr>
+    }
+    
+    </table>
+</body>
+</html>

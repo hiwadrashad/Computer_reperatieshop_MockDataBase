@@ -1,0 +1,20 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Adminarea</title>
+</head>
+<body>
+    <div>
+        @Html.ActionLink("List of all executed jobs", "Index", "Done", null, null)
+        @Html.ActionLink("List of all jobs in progress", "Index", "Progress", null, null)
+        @Html.ActionLink("List of all pending requests", "Index")
+    </div>
+</body>
+</html>

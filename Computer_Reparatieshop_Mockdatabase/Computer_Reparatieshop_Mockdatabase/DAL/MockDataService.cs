@@ -2,11 +2,13 @@
 using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using System.Web.WebSockets;
 
 namespace Computer_Reparatieshop_Mockdatabase.DAL
 {
@@ -149,6 +151,31 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         }
     }
 
+    public class MockDataserviceLogin
+    {
+        public readonly List<LoginModel> items;
+
+        public MockDataserviceLogin()
+        {
+            items = new List<LoginModel>()
+            {
+                new LoginModel { Id = Guid.NewGuid().ToString(), username = "username", password = "password"}
+            };
+        }
+
+        public bool Login(string username, string password)
+        {
+            if (items.Where(s => s.username == username && s.password == password).FirstOrDefault() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
+
     public class MemoryPostedFile : HttpPostedFileBase
     {
         private readonly byte[] fileBytes;
@@ -175,7 +202,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             items = new List<RequestViewModel>()
             {
-                new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes("Images/KoplampImage.jpg"))  }
+                new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(@"C:\Users\itv-admin\source\repos\Computer_reperatieshop_MockDataBase\Computer_Reparatieshop_Mockdatabase\Computer_Reparatieshop_Mockdatabase\Images\KoplampImage.jpg"))  }
             };
         }
 

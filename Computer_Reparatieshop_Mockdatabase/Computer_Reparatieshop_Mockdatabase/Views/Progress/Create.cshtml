@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => Model.status)
             <div class="col-md-offset-2 col-md-10">
-                @Html.DropDownListFor(n => n.status, new List<SelectListItem>
+                @Html.DropDownListFor(n => n.status.Text, new List<SelectListItem>
            {
            new SelectListItem { Text = "in afwachting", Value = "in afwachting"},
            new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen"},

@@ -1,0 +1,80 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.ViewModels.DoneViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>DoneViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.Klant)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.Klant)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.Omschrijving)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.Omschrijving)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.PrijsArbeid)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.PrijsArbeid)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.PrijsProducten)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.PrijsProducten)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.Reparateur)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.Reparateur)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.basemodel.Totaal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.basemodel.Totaal)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.onderdelen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.onderdelen)
+            </dd>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

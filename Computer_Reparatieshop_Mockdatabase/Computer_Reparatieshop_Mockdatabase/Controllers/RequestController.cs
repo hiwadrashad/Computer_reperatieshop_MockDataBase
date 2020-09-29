@@ -10,14 +10,29 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
     public class RequestController : Controller
     {
         // GET: Request
-        public ActionResult Index()
+        public ActionResult Adminarea()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult ChooseLoginOption()
+        {
+            return View();
+        }
+
+        public ActionResult Index(int i =0)
         {
             if (SingletonData.Singleton.StoreclienRequestInitalized == false)
             {
                 SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
                 SingletonData.Singleton.StoreclienRequestInitalized = true;
             }
-            return View();
+            return View(SingletonData.Singleton.StoreClientRequest.ReturnList());
         }
 
         // GET: Request/Details/5
@@ -38,9 +53,10 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
+             
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             catch
             {

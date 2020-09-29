@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.ViewModels.RequestViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.basemodel.omschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoredImage)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.omschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.StoredImage)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

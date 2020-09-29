@@ -23,6 +23,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         public double PrijsArbeid { get; set; }
 
         public double Totaal { get; set; }
+
     }
 
 
