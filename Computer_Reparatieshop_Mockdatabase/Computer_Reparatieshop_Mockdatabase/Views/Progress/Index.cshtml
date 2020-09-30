@@ -10,8 +10,48 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+        }
+        #header {
+        position:absolute;
+        top: 0px;
+        background-color: yellow;
+        background-size:500px;
+        width: 500%;
+        transform:translateX(-50%);
+        }
+    </style>
 </head>
 <body>
+ <div class="navbar" id="header">kln</div>
+    
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>

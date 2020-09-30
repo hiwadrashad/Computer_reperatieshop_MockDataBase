@@ -19,6 +19,25 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 SingletonData.Singleton.StoreReparationInProgressInitalized = true;
             }
 
+            OverviewViewmodel countbar = new OverviewViewmodel();
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "in afwachting", Value = "in afwachting" }))
+            {
+                countbar.aantalinafwachting = countbar.aantalinafwachting + 1;
+            }
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "wachten op onderdelen", Value = "wachten op onderdelen" }))
+            {
+                countbar.aantalwachtoponderdelen = countbar.aantalwachtoponderdelen + 1;
+            }
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "in behandeling", Value = "in behandeling" }))
+            {
+                countbar.aantalinbehandeling = countbar.aantalinbehandeling + 1;
+            }
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "klaar", Value = "klaar" }))
+            {
+                countbar.aantaalklaar = countbar.aantaalklaar + 1;
+            }
+
+            ViewBag.Bar = countbar;
             return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
         }
 

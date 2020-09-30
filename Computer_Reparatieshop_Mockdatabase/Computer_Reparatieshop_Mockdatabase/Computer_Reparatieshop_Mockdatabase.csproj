@@ -150,6 +150,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\abstract.jpg" />
     <Content Include="Images\button_generate.png" />
+    <Content Include="Images\clearbackground.jpg" />
     <Content Include="Images\KoplampImage.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

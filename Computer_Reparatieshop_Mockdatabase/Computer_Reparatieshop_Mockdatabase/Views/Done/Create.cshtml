@@ -22,23 +22,23 @@
         }
 
         body {
-            background-image: url("../../Images/abstract.jpg");
+            background-image: url("../../Images/clearbackground.jpg");
             display: table-cell;
             vertical-align: middle;
             background-repeat: no-repeat;
-            background-size:cover;
+            background-size: cover;
             background-position: 50%;
-            color: white;
-            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
         }
 
         #button {
-        color: white;
-        background-color:aqua;
-        background-image: url(../../Images/button_generate.png);
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
         }
-        
     </style>
 </head>
 <body id="login-div">
@@ -52,7 +52,7 @@
         @Html.AntiForgeryToken()
         
     <div class="form-horizontal">
-        <h4>Submit</h4>
+        <h4></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
