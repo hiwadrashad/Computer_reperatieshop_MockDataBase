@@ -207,6 +207,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
         public MockDataServiceClientRequest()
         {
+            string path = Path.Combine(Environment.CurrentDirectory, "KoplampImage.jpg");
             items = new List<RequestViewModel>()
             {
                 new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(@"C:\Users\itv-admin\source\repos\Computer_reperatieshop_MockDataBase\Computer_Reparatieshop_Mockdatabase\Computer_Reparatieshop_Mockdatabase\Images\KoplampImage.jpg"))  }

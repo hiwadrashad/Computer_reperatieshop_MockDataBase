@@ -20,19 +20,19 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
 
             OverviewViewmodel countbar = new OverviewViewmodel();
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "in afwachting", Value = "in afwachting" }))
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in afwachting"))
             {
                 countbar.aantalinafwachting = countbar.aantalinafwachting + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "wachten op onderdelen", Value = "wachten op onderdelen" }))
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "wachten op onderdelen"))
             {
                 countbar.aantalwachtoponderdelen = countbar.aantalwachtoponderdelen + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "in behandeling", Value = "in behandeling" }))
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in behandeling"))
             {
                 countbar.aantalinbehandeling = countbar.aantalinbehandeling + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == new SelectListItem() { Text = "klaar", Value = "klaar" }))
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "klaar"))
             {
                 countbar.aantaalklaar = countbar.aantaalklaar + 1;
             }
@@ -61,6 +61,10 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                     SingletonData.Singleton.StoreReparationInProgressInitalized = true;
                 }
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
+                if (progressviewmodel.status.Value == "klaar")
+                {
+                    return RedirectToAction("Create", "Done");
+                }
                 // TODO: Add insert logic here
 
                 return RedirectToAction("Index");

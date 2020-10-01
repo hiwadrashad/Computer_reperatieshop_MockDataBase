@@ -31,6 +31,7 @@
             color: dodgerblue;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
+            font-size: large;
         }
 
         #button {
@@ -38,6 +39,9 @@
             border: none;
             color: white;
             background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
         }
     </style>
 </head>
@@ -61,7 +65,7 @@
                 @Html.DisplayFor(modelitem => item.basemodel.omschrijving)
             </td>
             <td>
-                @Html.DisplayFor(modelitem => item.StoredImage)
+                @Html.DisplayFor(modelitem => item.StoredImage.FileName)
             </td>
             <td>
             </td>

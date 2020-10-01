@@ -14,6 +14,7 @@
 
         html, body {
             height: 100%;
+            overflow-x: hidden;
         }
 
         html {
@@ -31,6 +32,7 @@
             color: dodgerblue;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
+            font-size: large;
         }
 
         #button {
@@ -38,19 +40,45 @@
             border: none;
             color: white;
             background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
         }
         #header {
         position:absolute;
         top: 0px;
-        background-color: yellow;
+        background-color: deepskyblue;
         background-size:500px;
-        width: 500%;
+        width: 130%;
         transform:translateX(-50%);
+        display: inline;
+        height:70px;
         }
+        #list {
+         display:inline-block;
+         padding: 10px;
+         color: white;
+        }
+
     </style>
 </head>
 <body>
- <div class="navbar" id="header">kln</div>
+ <div class="navbar" id="header">
+     <ul>
+         <li id="list">
+            Aantal in afwachting @ViewBag.Bar.aantalinafwachting
+         </li>
+         <li id="list">
+           aantal wachten op onderdelen @ViewBag.Bar.aantalwachtoponderdelen
+         </li>
+         <li id="list">
+            aantal in behandeling @ViewBag.Bar.aantalinbehandeling
+         </li>
+         <li id="list">
+            aantal klaar @ViewBag.Bar.aantaalklaar
+         </li>
+     </ul>
+ </div>
     
     <p>
         @Html.ActionLink("Create New", "Create")
@@ -69,25 +97,67 @@
         </tr>
     
     @foreach (var item in Model) {
-      
+
     <tr>
-        <td>
-            @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.status.Text)
-        </td>
+
+        @if (item.status.Value == "in afwachting")
+        {
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+            </td>
+            <td style="color:red">
+                @Html.DisplayFor(modelitem => item.status.Text)
+            </td>
+        }
+        @if (item.status.Value == "wachten op onderdelen")
+        {
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+            </td>
+            <td style="color:blue">
+                @Html.DisplayFor(modelitem => item.status.Text)
+            </td>
+        }
+        @if (item.status.Value == "in behandeling")
+        {
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+            </td>
+            <td style="color:green">
+                @Html.DisplayFor(modelitem => item.status.Text)
+            </td>
+        }
+        @if (item.status.Value == "klaar")
+        {
+            <td >
+                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+            </td>
+            <td >
+                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+            </td>
+            <td style="color:yellow">
+                @Html.DisplayFor(modelitem => item.status.Text)
+            </td>
+        }
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-         <!--  @Html.ActionLink("Details", "Details", new { id = item.id }) |-->
+            <!--  @Html.ActionLink("Details", "Details", new { id = item.id }) |-->
             @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
     </tr>
     }
-    
+
+
     </table>
 </body>
 </html>

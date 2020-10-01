@@ -1,5 +1,7 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
 using Computer_Reparatieshop_Mockdatabase.Models;
+using Computer_Reparatieshop_Mockdatabase.SingletonData;
+using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +51,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View();
         }
 
-        public ActionResult Index(int i =0)
+        public ActionResult Index()
         {
             if (SingletonData.Singleton.StoreclienRequestInitalized == false)
             {
@@ -68,19 +70,28 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Request/Create
         public ActionResult Create()
         {
+            if (SingletonData.Singleton.StoreclienRequestInitalized == false)
+            {
+                SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
+                SingletonData.Singleton.StoreclienRequestInitalized = true;
+            }
             return View();
         }
 
         // POST: Request/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(RequestViewModel model)
         {
             try
             {
-             
-                // TODO: Add insert logic here
+                if (SingletonData.Singleton.StoreclienRequestInitalized == false)
+                {
+                    SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
+                    SingletonData.Singleton.StoreclienRequestInitalized = true;
+                }
+                Singleton.StoreClientRequest.AddItem(model);
 
-                return RedirectToAction("Create");
+                return RedirectToAction("ChooseLoginOption");
             }
             catch
             {
@@ -88,48 +99,6 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
         }
 
-        // GET: Request/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Request/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Request/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Request/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+  
     }
 }

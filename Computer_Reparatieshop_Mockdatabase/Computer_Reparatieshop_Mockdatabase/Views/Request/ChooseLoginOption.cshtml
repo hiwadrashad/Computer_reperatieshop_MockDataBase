@@ -30,20 +30,32 @@
             color: white;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
+            font-size: large;
         }
+
 
         #button {
             border-radius: 25px;
             border: none;
             color: white;
             background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+        }
+        .btn {
+        
         }
     </style>
 </head>
 <body>
     <div>
-        @Html.ActionLink("Klant", "Index")
-        @Html.ActionLink("Werknemer", "Adminarea") |
+        <button id="button" value="Create" onclick="location.href='@Url.Action("Create")'">
+            Klant
+        </button>
+        <button id="button" value="Werknemer" onclick="location.href='@Url.Action("Login")'">
+            Werknemer
+        </button>
     </div>
 </body>
 </html>

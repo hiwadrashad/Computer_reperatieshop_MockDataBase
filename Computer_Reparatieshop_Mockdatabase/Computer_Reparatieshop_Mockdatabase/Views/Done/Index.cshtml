@@ -29,8 +29,10 @@
             background-size: cover;
             background-position: 50%;
             color: dodgerblue;
+            font-size: large;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             text-align: center;
+            font-size: large;
         }
 
         #button {
@@ -38,13 +40,25 @@
             border: none;
             color: white;
             background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+        }
+
+        .classname {
+        background: url('../../Images/button_details (1).png') no-repeat;
+        width: 80px;
+        height:30px;
+        color: transparent;
+        text-indent: -9999px;
+        display: inline;
         }
     </style>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <button id="button" value="Index" onclick="location.href='@Url.Action("Create")'">
+        Creëer nieuw model
+    </button>
     <table class="table">
         <tr>
             <th>
@@ -64,30 +78,34 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.basemodel.Klant)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.basemodel.PrijsArbeid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.basemodel.PrijsProducten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.basemodel.Reparateur)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.basemodel.Totaal)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-        </td>
-    </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="tr">
+                    @Html.DisplayFor(modelItem => item.basemodel.Klant)
+                </td>
+                <td id="tr">
+                    @Html.DisplayFor(modelItem => item.basemodel.PrijsArbeid)
+                </td>
+                <td id="tr">
+                    @Html.DisplayFor(modelItem => item.basemodel.PrijsProducten)
+                </td>
+                <td id="tr">
+                    @Html.DisplayFor(modelItem => item.basemodel.Reparateur)
+                </td>
+                <td id="tr">
+                    @Html.DisplayFor(modelItem => item.basemodel.Totaal)
+                </td>
+                <td id="tr">
+                    @Html.ActionLink("Details", "Details", new { id = item.id })
+                </td>
+                <td id="tr">
+                    @Html.ActionLink("Print pdf", "Print", new { id = item.id })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>
