@@ -92,7 +92,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Request/Create
         [HttpPost]
-        public ActionResult Create(RequestViewModel model, HttpPostedFileBase fileupload)
+        public ActionResult Create(RequestViewModel model, HttpPostedFileBase StoredImage)
         {
             try
             {
@@ -101,15 +101,16 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                     SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
                     SingletonData.Singleton.StoreclienRequestInitalized = true;
                 }
-                if (fileupload != null)
-                {
-                    model.StoredImage = fileupload;
-                }
+                
+
+          
+                    model.StoredImage = StoredImage;
+                
 
                 Singleton.StoreClientRequest.AddItem(model);
                 
 
-                return RedirectToAction("ChooseLoginOption");
+                return RedirectToAction("Index");
             }
             catch
             {

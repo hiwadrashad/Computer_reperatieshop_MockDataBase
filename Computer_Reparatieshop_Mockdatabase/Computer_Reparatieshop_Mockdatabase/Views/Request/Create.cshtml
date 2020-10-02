@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-    @using (Html.BeginForm()) 
+    @using (Html.BeginForm("Create", "Request", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
         
@@ -67,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StoredImage)
             <div class="col-md-10">
-                <input type="file" name="fileupload"><br />
+                <input type="file" name="StoredImage"><br />
                 @Html.ValidationMessageFor(model => model.basemodel.omschrijving)
             </div>
         </div>
