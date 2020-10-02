@@ -110,7 +110,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 Singleton.StoreClientRequest.AddItem(model);
                 
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ChooseLoginOption");
             }
             catch
             {
