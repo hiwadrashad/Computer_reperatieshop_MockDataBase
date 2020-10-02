@@ -42,6 +42,7 @@
             height: 40px;
             font-weight: bolder;
             width: 200px;
+            margin: 10px 0 0 0;
         }
     </style>
 </head>
@@ -58,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.basemodel.omschrijving)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.basemodel.omschrijving)
+                @Html.EditorFor(model => model.basemodel.omschrijving)<br />
                 @Html.ValidationMessageFor(model => model.basemodel.omschrijving)
             </div>
         </div>
@@ -66,7 +67,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StoredImage)
             <div class="col-md-10">
-                <input type="file" name="fileupload">
+                <input type="file" name="fileupload"><br />
                 @Html.ValidationMessageFor(model => model.basemodel.omschrijving)
             </div>
         </div>
@@ -74,7 +75,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input id="button" type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

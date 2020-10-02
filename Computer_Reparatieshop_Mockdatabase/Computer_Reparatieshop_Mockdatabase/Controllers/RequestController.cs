@@ -4,6 +4,7 @@ using Computer_Reparatieshop_Mockdatabase.SingletonData;
 using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,6 +52,17 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View();
         }
 
+        public ActionResult Openfile(string id)
+        {
+            var model = Singleton.StoreClientRequest.GetItem(id);
+            MemoryStream target = new MemoryStream();
+            model.StoredImage.InputStream.CopyTo(target);
+            byte[] data = target.ToArray();
+            var base64 = Convert.ToBase64String(data);
+            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            ViewBag.imgSrc = imgSrc;
+            return View("ViewImage");
+        }
         public ActionResult Index()
         {
             if (SingletonData.Singleton.StoreclienRequestInitalized == false)
@@ -80,7 +92,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Request/Create
         [HttpPost]
-        public ActionResult Create(RequestViewModel model)
+        public ActionResult Create(RequestViewModel model, HttpPostedFileBase fileupload)
         {
             try
             {
@@ -89,7 +101,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                     SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
                     SingletonData.Singleton.StoreclienRequestInitalized = true;
                 }
+                if (fileupload != null)
+                {
+                    model.StoredImage = fileupload;
+                }
+
                 Singleton.StoreClientRequest.AddItem(model);
+                
 
                 return RedirectToAction("ChooseLoginOption");
             }

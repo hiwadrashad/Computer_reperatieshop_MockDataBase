@@ -18,6 +18,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         [DataType(DataType.Password)]
         public string password { get; set; }
 
+        [Display(Name = "Login error")]
+
         public string LoginErrorMessage { get; set; }
     }
 }

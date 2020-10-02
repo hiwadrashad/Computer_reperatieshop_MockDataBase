@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.WebPages.Html;
@@ -18,7 +19,10 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public string Reparateur { get; set; }
 
+        [Display(Name = "Prijs producten")]
         public double PrijsProducten { get; set; }
+
+        [Display(Name = "Prijs arbeid")]
 
         public double PrijsArbeid { get; set; }
 

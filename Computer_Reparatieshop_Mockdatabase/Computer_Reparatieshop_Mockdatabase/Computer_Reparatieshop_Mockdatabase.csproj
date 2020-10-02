@@ -192,6 +192,7 @@
     <Content Include="Views\Request\Index.cshtml" />
     <Content Include="Views\Request\Adminarea.cshtml" />
     <Content Include="Views\Request\Login.cshtml" />
+    <Content Include="Views\Request\ViewImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

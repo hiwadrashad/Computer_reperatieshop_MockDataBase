@@ -63,26 +63,27 @@
     </style>
 </head>
 <body>
- <div class="navbar" id="header">
-     <ul>
-         <li id="list">
-            Aantal in afwachting @ViewBag.Bar.aantalinafwachting
-         </li>
-         <li id="list">
-           aantal wachten op onderdelen @ViewBag.Bar.aantalwachtoponderdelen
-         </li>
-         <li id="list">
-            aantal in behandeling @ViewBag.Bar.aantalinbehandeling
-         </li>
-         <li id="list">
-            aantal klaar @ViewBag.Bar.aantaalklaar
-         </li>
-     </ul>
- </div>
-    
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    <div class="navbar" id="header">
+        <ul>
+            <li id="list">
+                Aantal in afwachting @ViewBag.Bar.aantalinafwachting
+            </li>
+            <li id="list">
+                aantal wachten op onderdelen @ViewBag.Bar.aantalwachtoponderdelen
+            </li>
+            <li id="list">
+                aantal in behandeling @ViewBag.Bar.aantalinbehandeling
+            </li>
+            <li id="list">
+                aantal klaar @ViewBag.Bar.aantaalklaar
+            </li>
+        </ul>
+    </div>
+
+    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("Create")'">
+        Creëer nieuw model
+    </button>
+
     <table class="table">
         <tr>
             <th>
@@ -95,67 +96,68 @@
                 @Html.DisplayNameFor(Model => Model.status)
             </th>
         </tr>
-    
-    @foreach (var item in Model) {
 
-    <tr>
+        @foreach (var item in Model)
+        {
 
-        @if (item.status.Value == "in afwachting")
-        {
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
-            </td>
-            <td style="color:red">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Value == "wachten op onderdelen")
-        {
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
-            </td>
-            <td style="color:blue">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Value == "in behandeling")
-        {
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
-            </td>
-            <td style="color:green">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Value == "klaar")
-        {
-            <td >
-                @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
-            </td>
-            <td >
-                @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
-            </td>
-            <td style="color:yellow">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
+            <tr>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            <!--  @Html.ActionLink("Details", "Details", new { id = item.id }) |-->
-            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-        </td>
-    </tr>
-    }
+                @if (item.status.Value == "in afwachting")
+                {
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+                    </td>
+                    <td style="color:red">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Value == "wachten op onderdelen")
+                {
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+                    </td>
+                    <td style="color:blue">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Value == "in behandeling")
+                {
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+                    </td>
+                    <td style="color:green">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Value == "klaar")
+                {
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.StartDatum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.basemodel.EindDatum)
+                    </td>
+                    <td style="color:yellow">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    <!--  @Html.ActionLink("Details", "Details", new { id = item.id }) |-->
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
 
 
     </table>

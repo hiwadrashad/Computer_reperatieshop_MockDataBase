@@ -46,9 +46,6 @@
     </style>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     <table class="table">
         <tr>
             <th>
@@ -58,20 +55,22 @@
                 @Html.DisplayNameFor(model => model.StoredImage)
             </th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelitem => item.basemodel.omschrijving)
-            </td>
-            <td>
-                @Html.DisplayFor(modelitem => item.StoredImage.FileName)
-            </td>
-            <td>
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.basemodel.omschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)
+                </td>
+                <td>
+                    @Html.ActionLink("Open image", "Openfile", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>
