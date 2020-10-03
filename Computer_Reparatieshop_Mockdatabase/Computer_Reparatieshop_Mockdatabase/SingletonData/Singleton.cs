@@ -3,6 +3,7 @@ using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace Computer_Reparatieshop_Mockdatabase.SingletonData
@@ -17,13 +18,8 @@ namespace Computer_Reparatieshop_Mockdatabase.SingletonData
 
         public static MockDataserviceLogin StoreLogin { get; set; }
 
+        public static Factory StoreFactory { get; set; }
 
-        public static bool StoreReparationDoneInitialized = false;
-
-        public static bool StoreclienRequestInitalized = false;
-
-        public static bool StoreReparationInProgressInitalized = false;
-
-        public static bool StoreLoginInitialized = false;
+        public static bool AllInitialized = false;
     }
 }

@@ -21,11 +21,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult Login()
         {
-            if (SingletonData.Singleton.StoreLoginInitialized == false)
-            {
-                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
-                SingletonData.Singleton.StoreLoginInitialized = true;
-            }
+            
             return View();
 
         }
@@ -33,11 +29,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         [HttpPost]
         public ActionResult Autherize(LoginModel userModel)
         {
-            if (SingletonData.Singleton.StoreLoginInitialized == false)
-            {
-                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
-                SingletonData.Singleton.StoreLoginInitialized = true;
-            }
+           
             var UserDetails = SingletonData.Singleton.StoreLogin.Login(userModel.username, userModel.password);
             if (UserDetails == false)
             {
@@ -54,22 +46,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult Openfile(string id)
         {
-            var model = Singleton.StoreClientRequest.GetItem(id);
-            MemoryStream target = new MemoryStream();
-            model.StoredImage.InputStream.CopyTo(target);
-            byte[] data = target.ToArray();
-            var base64 = Convert.ToBase64String(data);
-            var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-            ViewBag.imgSrc = imgSrc;
+            ViewBag.imgSrc = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
             return View("ViewImage");
         }
         public ActionResult Index()
         {
-            if (SingletonData.Singleton.StoreclienRequestInitalized == false)
-            {
-                SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
-                SingletonData.Singleton.StoreclienRequestInitalized = true;
-            }
+          
             return View(SingletonData.Singleton.StoreClientRequest.ReturnList());
         }
 
@@ -82,11 +64,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Request/Create
         public ActionResult Create()
         {
-            if (SingletonData.Singleton.StoreclienRequestInitalized == false)
-            {
-                SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
-                SingletonData.Singleton.StoreclienRequestInitalized = true;
-            }
+           
             return View();
         }
 
@@ -96,14 +74,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                if (SingletonData.Singleton.StoreclienRequestInitalized == false)
-                {
-                    SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
-                    SingletonData.Singleton.StoreclienRequestInitalized = true;
-                }
-                
-
-          
+                           
                     model.StoredImage = StoredImage;
                 
 

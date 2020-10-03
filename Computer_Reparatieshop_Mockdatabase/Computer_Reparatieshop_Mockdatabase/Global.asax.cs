@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Computer_Reparatieshop_Mockdatabase.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,15 @@ namespace Computer_Reparatieshop_Mockdatabase
     {
         protected void Application_Start()
         {
+            if (SingletonData.Singleton.AllInitialized == false)
+            {
+                SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
+                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
+                SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
+                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                SingletonData.Singleton.StoreFactory = new Factory();
+                SingletonData.Singleton.AllInitialized = true;
+            }
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

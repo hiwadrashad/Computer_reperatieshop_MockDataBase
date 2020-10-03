@@ -1,4 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
+using Computer_Reparatieshop_Mockdatabase.SingletonData;
 using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,31 +14,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Progress
         public ActionResult Index()
         {
-            if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-            {
-                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-            }
-
-            OverviewViewmodel countbar = new OverviewViewmodel();
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in afwachting"))
-            {
-                countbar.aantalinafwachting = countbar.aantalinafwachting + 1;
-            }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "wachten op onderdelen"))
-            {
-                countbar.aantalwachtoponderdelen = countbar.aantalwachtoponderdelen + 1;
-            }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in behandeling"))
-            {
-                countbar.aantalinbehandeling = countbar.aantalinbehandeling + 1;
-            }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "klaar"))
-            {
-                countbar.aantaalklaar = countbar.aantaalklaar + 1;
-            }
-
-            ViewBag.Bar = countbar;
+            ViewBag.Bar = Singleton.StoreFactory.overview.CountStatus();
             return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
         }
 
@@ -55,11 +32,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-                {
-                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-                }
+                
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
                 if (progressviewmodel.status.Value == "klaar")
                 {
@@ -78,11 +51,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Progress/Edit/5
         public ActionResult Edit(ProgressViewModel model)
         {
-            if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-            {
-                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-            }
+           
             return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
         }
 
@@ -93,11 +62,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                 // TODO: Add update logic here
-                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-                {
-                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-                }
+              
                 SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model);
                 return RedirectToAction("Index");
             }
@@ -110,11 +75,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Progress/Delete/5
         public ActionResult Delete(ProgressViewModel model)
         {
-            if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-            {
-                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-            }
+            
             return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
         }
 
@@ -124,11 +85,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                if (SingletonData.Singleton.StoreReparationInProgressInitalized == false)
-                {
-                    SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                    SingletonData.Singleton.StoreReparationInProgressInitalized = true;
-                }
+               
                 var item = SingletonData.Singleton.StoreReparationInProgress.RemoveModelByModel(model);
                 // TODO: Add delete logic here
 
