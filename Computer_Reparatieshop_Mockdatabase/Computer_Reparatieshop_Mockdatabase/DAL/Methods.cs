@@ -6,6 +6,7 @@ using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -74,15 +75,12 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             doc.Add(paragraph);
             doc.Close();
             var pathpdffile = Path.GetFullPath("host.pdf");
-            Process p = new Process();
-            p.StartInfo = new ProcessStartInfo()
-            {
-                CreateNoWindow = false,
-                Verb = "print",
-                FileName = pathpdffile
-
-            };
-            p.Start();
+            PdfDocument pdfDocument = new PdfDocument();
+            PrintDocument print = new PrintDocument();
+            ProcessStartInfo info = new ProcessStartInfo(pathpdffile);
+            info.FileName = pathpdffile;
+            Process.Start(info);
+          
         }
     }
 
