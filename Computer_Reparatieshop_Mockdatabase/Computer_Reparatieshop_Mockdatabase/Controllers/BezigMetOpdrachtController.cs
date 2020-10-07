@@ -1,6 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
 using Computer_Reparatieshop_Mockdatabase.SingletonData;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Computer_Reparatieshop_Mockdatabase.Controllers
 {
-    public class ProgressController : Controller
+    public class BezigMetOpdrachtController : Controller
     {
         // GET: Progress
         public ActionResult Index()
@@ -28,7 +27,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Create
         [HttpPost]
-        public ActionResult Create(ProgressViewModel progressviewmodel)
+        public ActionResult Create(Models.ModelReparatie progressviewmodel)
         {
             try
             {
@@ -36,7 +35,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
                 if (progressviewmodel.status.Value == "klaar")
                 {
-                    return RedirectToAction("Create", "Done");
+                    return RedirectToAction("Create", "OpslagAf");
                 }
                 // TODO: Add insert logic here
 
@@ -49,7 +48,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Progress/Edit/5
-        public ActionResult Edit(ProgressViewModel model)
+        public ActionResult Edit(Models.ModelReparatie model)
         {
            
             return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
@@ -57,7 +56,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Edit/5
         [HttpPost]
-        public ActionResult Edit(ProgressViewModel model, int i = 0)
+        public ActionResult Edit(Models.ModelReparatie model, int i = 0)
         {
             try
             {
@@ -73,7 +72,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Progress/Delete/5
-        public ActionResult Delete(ProgressViewModel model)
+        public ActionResult Delete(Models.ModelReparatie model)
         {
             
             return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
@@ -81,7 +80,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Delete/5
         [HttpPost]
-        public ActionResult Delete(ProgressViewModel model, int i = 0)
+        public ActionResult Delete(Models.ModelReparatie model, int i = 0)
         {
             try
             {

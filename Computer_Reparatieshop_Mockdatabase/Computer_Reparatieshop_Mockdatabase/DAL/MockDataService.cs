@@ -1,5 +1,4 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.Models;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,27 +11,27 @@ using System.Web.WebSockets;
 
 namespace Computer_Reparatieshop_Mockdatabase.DAL
 {
-    public class MockDataServiceReparationDone :IDataService<DoneViewModel>
+    public class MockDataServiceReparationDone :IDataService<ModelReparatie>
     {
-        public readonly List<DoneViewModel> items;
+        public readonly List<ModelReparatie> items;
 
         public MockDataServiceReparationDone()
         {
-            items = new List<DoneViewModel>()
+            items = new List<ModelReparatie>()
             {
-            new DoneViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationDone() { Id = Guid.NewGuid().ToString(), Klant = "John Smith", Omschrijving = "reparatie airbag", PrijsArbeid = 40, PrijsProducten = 300, Reparateur = "Mitch Summers", Totaal = 340 },onderdelen = "Wiel, stuur, uitlaat" }
+            new ModelReparatie { Id = Guid.NewGuid().ToString(), EindDatum = new DateTime(2020,12,25), Klant = new ClientModel { Id = Guid.NewGuid().ToString(), AdressNummer = 1, GebruikersNaam = "TheHedge", Naam = "Jan Piet", Plaats = "Utrecht", PostCode = "3445XA", Straatnaam ="Overvechtsestraat", telefoonnummer = "06-37551762", Wachtwoord="Vos789"  }, Omschrijving = "Koplamp is stuk", onderdelen = new PartModel { id = Guid.NewGuid().ToString(), Name = "Caborateur", numberofpartsavailable = 12, qualityofpart = "Moderate" } }
             };
         }
 
-        public bool AddItem(DoneViewModel item)
+        public bool AddItem(ModelReparatie item)
         {
             items.Add(item);
             return  (true);
         }
 
-        public  bool UpdateItem(DoneViewModel item)
+        public  bool UpdateItem(ModelReparatie item)
         {
-            var oldItem = items.Where((DoneViewModel arg) => arg.id == item.id).FirstOrDefault();
+            var oldItem = items.Where((ModelReparatie arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -41,18 +40,18 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
         public bool DeleteItem(string id)
         {
-            var oldItem = items.Where((DoneViewModel arg) => arg.id == id).FirstOrDefault();
+            var oldItem = items.Where((ModelReparatie arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return  (true);
         }
 
-        public  DoneViewModel GetItem(string id)
+        public  ModelReparatie GetItem(string id)
         {
-            return  (items.FirstOrDefault(s => s.id == id));
+            return  (items.FirstOrDefault(s => s.Id == id));
         }
 
-        public List<DoneViewModel> ReturnList()
+        public List<ModelReparatie> ReturnList()
         {
             return items;
         }
@@ -64,27 +63,27 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     }
 
-    public class MockDataServiceReparationInProgress : IDataService<ProgressViewModel>
+    public class MockDataServiceWerknemer : IDataService<WerknemerModel>
     {
-        public readonly List<ProgressViewModel> items;
+        public readonly List<WerknemerModel> items;
 
-        public MockDataServiceReparationInProgress()
+        public MockDataServiceWerknemer()
         {
-            items = new List<ProgressViewModel>()
+            items = new List<WerknemerModel>()
             {
-                new ProgressViewModel { id = Guid.NewGuid().ToString(), basemodel = new ModelReparationInProgress() { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25)}, status = new SelectListItem { Text ="in afwachting", Value ="in afwachting"}}
+            new WerknemerModel { Id = Guid.NewGuid().ToString(), username = "iLikeCats", AdressNummer = 9, Image = (HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(HttpContext.Current.Server.MapPath(@"~/Images/Koplampimage.jpg"))), Naam = "Pim Van  Horst", password ="MijnWachtwoord", Plaats="Amsterdam", PostCode = "3545CL", rol = RolesWerknemer.Roles.hoofdreperateur, Straatnaam = "Vorststraat", telefoonnummer = "06-366576845",    }
             };
         }
 
-        public bool AddItem(ProgressViewModel item)
+        public bool AddItem(WerknemerModel item)
         {
             items.Add(item);
             return (true);
         }
 
-        public bool UpdateItem(ProgressViewModel item)
+        public bool UpdateItem(WerknemerModel item)
         {
-            var oldItem = items.Where((ProgressViewModel arg) => arg.id == item.id).FirstOrDefault();
+            var oldItem = items.Where((WerknemerModel arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -93,31 +92,102 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
         public bool DeleteItem(string id)
         {
-            var oldItem = items.Where((ProgressViewModel arg) => arg.id == id).FirstOrDefault();
+            var oldItem = items.Where((WerknemerModel arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return (true);
         }
 
-        public ProgressViewModel GetItem(string id)
+        public WerknemerModel GetItem(string id)
         {
-            return (items.FirstOrDefault(s => s.id == id));
+            return (items.FirstOrDefault(s => s.Id == id));
         }
 
-        public bool RemoveModelByModel(ProgressViewModel model)
+        public List<WerknemerModel> ReturnList()
         {
-            var item = items.Where(x => x.id == model.id).FirstOrDefault();
+            return items;
+        }
+
+        public int CountItemsList()
+        {
+            return items.Count();
+        }
+
+        public bool Login(string username, string password)
+        {
+            if (items.Where(s => s.username == username && s.password == password).FirstOrDefault() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateErrorMessage(WerknemerModel item)
+        {
+            var oldItem = items.Where((WerknemerModel arg) => arg.Id == item.Id).FirstOrDefault();
+            oldItem.LoginErrorMessage = "Wrong Username or Password";
+            return true;
+        }
+
+    }
+
+    public class MockDataServiceReparationInProgress : IDataService<ModelReparatie>
+    {
+        public readonly List<ModelReparatie> items;
+
+        public MockDataServiceReparationInProgress()
+        {
+            items = new List<ModelReparatie>()
+            {
+                new ModelReparatie { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25), status = new SelectListItem { Text ="in afwachting", Value ="in afwachting"}}
+            };
+        }
+
+        public bool AddItem(ModelReparatie item)
+        {
+            items.Add(item);
+            return (true);
+        }
+
+        public bool UpdateItem(ModelReparatie item)
+        {
+            var oldItem = items.Where((ModelReparatie arg) => arg.Id == item.Id).FirstOrDefault();
+            items.Remove(oldItem);
+            items.Add(item);
+
+            return (true);
+        }
+
+        public bool DeleteItem(string id)
+        {
+            var oldItem = items.Where((ModelReparatie arg) => arg.Id == id).FirstOrDefault();
+            items.Remove(oldItem);
+
+            return (true);
+        }
+
+        public ModelReparatie GetItem(string id)
+        {
+            return (items.FirstOrDefault(s => s.Id == id));
+        }
+
+        public bool RemoveModelByModel(ModelReparatie model)
+        {
+            var item = items.Where(x => x.Id == model.Id).FirstOrDefault();
             items.Remove(item);
             return (true);
         }
 
-        public ProgressViewModel GetItemByItem(ProgressViewModel model)
+        public ModelReparatie GetItemByItem(ModelReparatie model)
         {
            
-            return items.FirstOrDefault(s => s.id == model.id);
+            return items.FirstOrDefault(s => s.Id == model.Id);
         }
 
-        public List<ProgressViewModel> ReturnList()
+        public List<ModelReparatie> ReturnList()
         {
             return items;
         }
@@ -136,11 +206,11 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public class MockDataServiceOverview
     {
-        public readonly OverviewViewmodel items;
+        public readonly Models.ModelStatus items;
 
         public MockDataServiceOverview()
         {
-            items = new OverviewViewmodel()
+            items = new Models.ModelStatus()
             {
                 id = Guid.NewGuid().ToString(),
                 aantaalklaar = SingletonData.Singleton.StoreReparationDone.CountItemsList(),
@@ -153,13 +223,13 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public class MockDataserviceLogin
     {
-        public readonly List<LoginModel> items;
+        public readonly List<AdminModel> items;
 
         public MockDataserviceLogin()
         {
-            items = new List<LoginModel>()
+            items = new List<AdminModel>()
             {
-                new LoginModel { Id = Guid.NewGuid().ToString(), username = "username", password = "password"}
+                new AdminModel { Id = Guid.NewGuid().ToString(), username = "username", password = "password"}
             };
         }
 
@@ -175,13 +245,14 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             }
         }
 
-        public bool UpdateErrorMessage(LoginModel item)
+        public bool UpdateErrorMessage(AdminModel item)
         {
-            var oldItem = items.Where((LoginModel arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where((AdminModel arg) => arg.Id == item.Id).FirstOrDefault();
             oldItem.LoginErrorMessage = "Wrong Username or Password";
             return true;
         }
     }
+
 
     public class MemoryPostedFile : HttpPostedFileBase
     {
@@ -201,28 +272,28 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public override Stream InputStream { get; }
     }
 
-    public class MockDataServiceClientRequest : IDataService<RequestViewModel>
+    public class MockDataServiceClientRequest : IDataService<ModelBestelling>
     {
-        public readonly List<RequestViewModel> items;
+        public readonly List<ModelBestelling> items;
 
         public MockDataServiceClientRequest()
         {
 
-            items = new List<RequestViewModel>()
+            items = new List<ModelBestelling>()
             {
-                new RequestViewModel { Id = Guid.NewGuid().ToString(), basemodel = new ModelClientRequest() { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" }, StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(HttpContext.Current.Server.MapPath(@"~/Images/Koplampimage.jpg")))  }
+                new ModelBestelling { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" , StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(HttpContext.Current.Server.MapPath(@"~/Images/Koplampimage.jpg")))  }
             };
         }
 
-        public bool AddItem(RequestViewModel item)
+        public bool AddItem(ModelBestelling item)
         {
             items.Add(item);
             return (true);
         }
 
-        public bool UpdateItem(RequestViewModel item)
+        public bool UpdateItem(ModelBestelling item)
         {
-            var oldItem = items.Where((RequestViewModel arg) => arg.Id == item.Id).FirstOrDefault();
+            var oldItem = items.Where((ModelBestelling arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(oldItem);
             items.Add(item);
 
@@ -231,18 +302,18 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
         public bool DeleteItem(string id)
         {
-            var oldItem = items.Where((RequestViewModel arg) => arg.Id == id).FirstOrDefault();
+            var oldItem = items.Where((ModelBestelling arg) => arg.Id == id).FirstOrDefault();
             items.Remove(oldItem);
 
             return (true);
         }
 
-        public RequestViewModel GetItem(string id)
+        public ModelBestelling GetItem(string id)
         {
             return (items.FirstOrDefault(s => s.Id == id));
         }
 
-        public List<RequestViewModel> ReturnList()
+        public List<ModelBestelling> ReturnList()
         {
             return items;
         }

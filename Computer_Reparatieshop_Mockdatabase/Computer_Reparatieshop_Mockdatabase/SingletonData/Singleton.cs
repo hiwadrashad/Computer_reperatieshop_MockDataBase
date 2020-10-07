@@ -1,5 +1,4 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +16,8 @@ namespace Computer_Reparatieshop_Mockdatabase.SingletonData
         public static MockDataServiceReparationInProgress StoreReparationInProgress { get; set; }
 
         public static MockDataserviceLogin StoreLogin { get; set; }
+
+        public static MockDataServiceWerknemer StoreWerknemerLogin { get; set; }
 
         public static Factory StoreFactory { get; set; }
 

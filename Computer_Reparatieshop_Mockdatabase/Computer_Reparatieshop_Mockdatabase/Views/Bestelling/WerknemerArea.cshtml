@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Adminarea</title>
+    <title>WerknemeArea</title>
     <style>
 
         html, body {
@@ -46,23 +46,22 @@
         }
 
         .btn {
-        background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
-        color: transparent;
-        height:80px;
-       
+            background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
+            color: transparent;
+            height: 80px;
         }
     </style>
 </head>
-<body id="login-div">
+<body>
     <div>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","Done")'">
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","OpslagAf")'">
             Uitgevoerde opdrachten
         </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","Progress")'">
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","BezigMetOpdracht")'">
             Opdrachten in progressie
         </button>
         <button id="button" value="Index" onclick="location.href='@Url.Action("Index")'">
-             Opdrachten in afwachting
+            Opdrachten in afwachting
         </button>
 
     </div>

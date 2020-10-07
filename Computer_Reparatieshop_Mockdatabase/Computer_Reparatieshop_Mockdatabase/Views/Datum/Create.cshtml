@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.ViewModels.ProgressViewModel
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie
 
 @{
     Layout = null;
@@ -60,18 +60,18 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => Model.basemodel.StartDatum)
+                @Html.LabelFor(model => Model.StartDatum)
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.EditorFor(model => Model.basemodel.StartDatum)<br />
-                    @Html.ValidationMessageFor(model => Model.basemodel.StartDatum)
+                    @Html.EditorFor(model => Model.StartDatum)<br />
+                    @Html.ValidationMessageFor(model => Model.StartDatum)
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => Model.basemodel.EindDatum)
+                @Html.LabelFor(model => Model.EindDatum)
                 <div class="col-md-offset-2 col-md-10">
-                    @Html.EditorFor(model => Model.basemodel.EindDatum)<br />
-                    @Html.ValidationMessageFor(model => Model.basemodel.EindDatum)
+                    @Html.EditorFor(model => Model.EindDatum)<br />
+                    @Html.ValidationMessageFor(model => Model.EindDatum)
                 </div>
             </div>
 

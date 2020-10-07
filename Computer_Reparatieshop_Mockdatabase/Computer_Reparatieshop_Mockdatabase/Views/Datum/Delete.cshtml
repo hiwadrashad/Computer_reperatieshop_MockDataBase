@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.ViewModels.ProgressViewModel
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie
 
 @{
     Layout = null;
@@ -52,16 +52,16 @@
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.basemodel.StartDatum)
+                @Html.DisplayNameFor(model => model.StartDatum)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.basemodel.StartDatum)
+                @Html.DisplayFor(model => model.StartDatum)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.basemodel.EindDatum)
+                @Html.DisplayNameFor(model => model.EindDatum)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.basemodel.EindDatum)
+                @Html.DisplayFor(model => model.EindDatum)
             </dd>
             <dt>
                 @Html.DisplayNameFor(model => model.status)

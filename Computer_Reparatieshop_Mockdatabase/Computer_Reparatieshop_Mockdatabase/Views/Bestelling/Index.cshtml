@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.ViewModels.RequestViewModel>
+﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.Models.ModelBestelling>
 
 @{
     Layout = null;
@@ -49,7 +49,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.omschrijving)
+                @Html.DisplayNameFor(model => model.omschrijving)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StoredImage)
@@ -60,7 +60,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelitem => item.basemodel.omschrijving)
+                    @Html.DisplayFor(modelitem => item.omschrijving)
                 </td>
                 <td>
                     @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)

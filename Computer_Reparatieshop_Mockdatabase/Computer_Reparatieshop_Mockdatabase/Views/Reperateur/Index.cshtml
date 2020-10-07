@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.ViewModels.DoneViewModel>
+﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie>
 
 @{
     Layout = null;
@@ -62,19 +62,19 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.Klant)
+                @Html.DisplayNameFor(model => model.Klant)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.PrijsArbeid)
+                @Html.DisplayNameFor(model => model.PrijsArbeid)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.PrijsProducten)
+                @Html.DisplayNameFor(model => model.PrijsProducten)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.Reparateur)
+                @Html.DisplayNameFor(model => model.Reparateur)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.basemodel.Totaal)
+                @Html.DisplayNameFor(model => model.Totaal)
             </th>
             <th></th>
         </tr>
@@ -83,25 +83,25 @@
         {
             <tr>
                 <td id="tr">
-                    @Html.DisplayFor(modelItem => item.basemodel.Klant)
+                    @Html.DisplayFor(modelItem => item.Klant)
                 </td>
                 <td id="tr">
-                    @Html.DisplayFor(modelItem => item.basemodel.PrijsArbeid)
+                    @Html.DisplayFor(modelItem => item.PrijsArbeid)
                 </td>
                 <td id="tr">
-                    @Html.DisplayFor(modelItem => item.basemodel.PrijsProducten)
+                    @Html.DisplayFor(modelItem => item.PrijsProducten)
                 </td>
                 <td id="tr">
-                    @Html.DisplayFor(modelItem => item.basemodel.Reparateur)
+                    @Html.DisplayFor(modelItem => item.Reparateur)
                 </td>
                 <td id="tr">
-                    @Html.DisplayFor(modelItem => item.basemodel.Totaal)
+                    @Html.DisplayFor(modelItem => item.Totaal)
                 </td>
                 <td id="tr">
-                    @Html.ActionLink("Details", "Details", new { id = item.id })
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })
                 </td>
                 <td id="tr">
-                    @Html.ActionLink("Print pdf", "Print", new { id = item.id })
+                    @Html.ActionLink("Print pdf", "Print", new { id = item.Id })
                 </td>
             </tr>
         }

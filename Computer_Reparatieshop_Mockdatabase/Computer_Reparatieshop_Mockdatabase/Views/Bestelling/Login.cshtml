@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.Models.LoginModel
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.AdminModel
 
 @{
     Layout = null;
@@ -47,7 +47,7 @@
 </head>
 <body>
     <div id="login-div">
-        @using (Html.BeginForm("Autherize", "Request", FormMethod.Post))
+        @using (Html.BeginForm("Autherize", "Bestelling", FormMethod.Post))
         {
             <table>
                 <tr>

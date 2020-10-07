@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Computer_Reparatieshop_Mockdatabase.Models
 {
-    public class ModelClientRequest
-    {
-        public string Id { get; set; }
-
-        public string omschrijving { get; set; }
-
+    public enum OphalenJaNee
+    { 
+    Ja,
+    Nee
     }
 }

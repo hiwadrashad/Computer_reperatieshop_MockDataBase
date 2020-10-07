@@ -1,5 +1,4 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.SingletonData;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.SqlServer.Server;
@@ -18,9 +17,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public virtual void ExecutePrinting(string id)
         { }
 
-        public virtual OverviewViewmodel CountStatus()
+        public virtual Models.ModelStatus CountStatus()
         {
-            OverviewViewmodel overview = new OverviewViewmodel();
+            Models.ModelStatus overview = new Models.ModelStatus();
             return overview; 
         }
 
@@ -40,7 +39,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public interface IOverview
     {
-        OverviewViewmodel CountStatus();
+        Models.ModelStatus CountStatus();
     }
 
     public interface IImageprocessing
@@ -63,11 +62,11 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
        
         public override void ExecutePrinting(string id)
         {
-            var modeltoprint = Singleton.StoreReparationDone.items.Where(x => x.id == id).FirstOrDefault();
+            var modeltoprint = Singleton.StoreReparationDone.items.Where(x => x.Id == id).FirstOrDefault();
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("host.pdf", FileMode.Create));
             doc.Open();
-            string storestring1 = "Klant: " + modeltoprint.basemodel.Klant + "@" + "omchrijving: " + modeltoprint.basemodel.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.basemodel.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.basemodel.PrijsProducten + "@" + "Reperateur: " + modeltoprint.basemodel.Reparateur + "@" + "Totaal Prijs" + modeltoprint.basemodel.Totaal + "@" + "Onderelen: " + modeltoprint.onderdelen;
+            string storestring1 = "Klant: " + modeltoprint.Klant + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur + "@" + "Totaal Prijs" + modeltoprint.Totaal + "@" + "Onderelen: " + modeltoprint.onderdelen;
             string addnewlines1 = storestring1.Replace("@", Environment.NewLine);
             Paragraph paragraph = new Paragraph(addnewlines1);
             paragraph.IndentationRight = 100;
@@ -86,9 +85,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public class Overview : Parent, IOverview
     {
-        public override OverviewViewmodel CountStatus()
+        public override Models.ModelStatus CountStatus()
         {
-            OverviewViewmodel countbar = new OverviewViewmodel();
+            Models.ModelStatus countbar = new Models.ModelStatus();
             foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in afwachting"))
             {
                 countbar.aantalinafwachting = countbar.aantalinafwachting + 1;

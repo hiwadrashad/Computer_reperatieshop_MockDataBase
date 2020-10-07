@@ -20,6 +20,7 @@ namespace Computer_Reparatieshop_Mockdatabase
                 SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
                 SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
                 SingletonData.Singleton.StoreFactory = new Factory();
+                SingletonData.Singleton.StoreWerknemerLogin = new MockDataServiceWerknemer();
                 SingletonData.Singleton.AllInitialized = true;
             }
             AreaRegistration.RegisterAllAreas();

@@ -1,6 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
 using Computer_Reparatieshop_Mockdatabase.SingletonData;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
@@ -14,7 +13,7 @@ using System.Web.UI.WebControls;
 
 namespace Computer_Reparatieshop_Mockdatabase.Controllers
 {
-    public class DoneController : Controller
+    public class OpslagAfController : Controller
     {
         // GET: Done
         public ActionResult Index()
@@ -23,7 +22,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
             foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
             {
-                item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+                item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
             return View(SingletonData.Singleton.StoreReparationDone.ReturnList());
         }
@@ -43,9 +42,9 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
            
             foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
             {
-                item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+                item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
-            return View(SingletonData.Singleton.StoreReparationDone.items.Where(x => x.id == id).FirstOrDefault());
+            return View(SingletonData.Singleton.StoreReparationDone.items.Where(x => x.Id == id).FirstOrDefault());
         }
 
         // GET: Done/Create
@@ -56,7 +55,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Done/Create
         [HttpPost]
-        public ActionResult Create(DoneViewModel model)
+        public ActionResult Create(Models.ModelReparatie model)
         {
             try
             {
@@ -64,7 +63,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 
                 foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
                 {
-                    item.basemodel.Totaal = item.basemodel.PrijsArbeid + item.basemodel.PrijsProducten;
+                    item.Totaal = item.PrijsArbeid + item.PrijsProducten;
                 }
 
                 SingletonData.Singleton.StoreReparationDone.AddItem(model);

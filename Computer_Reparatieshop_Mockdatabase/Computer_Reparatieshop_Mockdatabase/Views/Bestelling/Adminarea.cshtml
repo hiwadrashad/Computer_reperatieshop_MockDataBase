@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Adminarea</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 50px;
+            font-weight: bolder;
+            width: 250px;
+            margin: 0 40px 0 40px;
+            font-size: large;
+        }
+
+        .btn {
+        background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
+        color: transparent;
+        height:80px;
+       
+        }
+    </style>
+</head>
+<body id="login-div">
+    <div>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","OpslagAf")'">
+            Uitgevoerde opdrachten
+        </button>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","BezigMetOpdracht")'">
+            Opdrachten in progressie
+        </button>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index")'">
+            Opdrachten in afwachting
+        </button>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("Index", "Login")'">
+             Werknemers
+        </button>
+
+    </div>
+</body>
+</html>

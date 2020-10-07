@@ -1,7 +1,7 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.DAL;
 using Computer_Reparatieshop_Mockdatabase.Models;
 using Computer_Reparatieshop_Mockdatabase.SingletonData;
-using Computer_Reparatieshop_Mockdatabase.ViewModels;
+using Org.BouncyCastle.Pkix;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace Computer_Reparatieshop_Mockdatabase.Controllers
 {
-    public class RequestController : Controller
+    public class BestellingController : Controller
     {
         // GET: Request
         public ActionResult Adminarea()
@@ -27,16 +27,22 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autherize(LoginModel userModel)
+        public ActionResult Autherize(AdminModel userModel)
         {
            
             var UserDetails = SingletonData.Singleton.StoreLogin.Login(userModel.username, userModel.password);
-            if (UserDetails == false)
+            var UserDetailsWerknemer = Singleton.StoreWerknemerLogin.Login(userModel.username, userModel.password);
+            if (UserDetails == true)
             {
-                userModel.LoginErrorMessage = "Wrong username or password";
-                return View("Login", userModel);
+                return View("Adminarea");
             }
-            return View("Adminarea");
+            else if (UserDetailsWerknemer == true)
+            {
+                return View("WerknemerArea");
+            }
+            userModel.LoginErrorMessage = "Wrong username or password";
+            return View("Login", userModel);
+
         }
 
         public ActionResult ChooseLoginOption()
@@ -70,7 +76,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Request/Create
         [HttpPost]
-        public ActionResult Create(RequestViewModel model, HttpPostedFileBase StoredImage)
+        public ActionResult Create(ModelBestelling model, HttpPostedFileBase StoredImage)
         {
             try
             {
