@@ -16,6 +16,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public string GebruikersNaam { get; set; }
 
+        public string LoginErrorMessage { get; set; }
+
         public string Wachtwoord { get; set; }
         public string Naam { get; set; }
 

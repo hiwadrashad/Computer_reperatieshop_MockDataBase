@@ -125,6 +125,10 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             }
         }
 
+        public WerknemerModel ReturnModelByNameAndPassword(string username, string password)
+        {
+            return items.Where(s => s.username == username && s.password == password).FirstOrDefault();
+        }
         public bool UpdateErrorMessage(WerknemerModel item)
         {
             var oldItem = items.Where((WerknemerModel arg) => arg.Id == item.Id).FirstOrDefault();
@@ -132,6 +136,83 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return true;
         }
 
+    }
+
+    public class MockDataServiceKlant
+    {
+        public readonly List<ClientModel> items;
+
+        public MockDataServiceKlant()
+        {
+            items = new List<ClientModel>
+            {
+            new ClientModel { Id = Guid.NewGuid().ToString(), AdressNummer = 9, GebruikersNaam = "Evano12", Naam = "Becky Lin", Plaats = "Nieuwegein", PostCode = "4556XL", Straatnaam = "Verwerfstraat", telefoonnummer = "06-56776788", Wachtwoord = "Baby1010"}
+            };
+        }
+        public bool Login(string username, string password)
+        {
+            if (items.Where(s => s.GebruikersNaam == username && s.Wachtwoord == password).FirstOrDefault() != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateErrorMessage(ClientModel item)
+        {
+            var oldItem = items.Where((ClientModel arg) => arg.Id == item.Id).FirstOrDefault();
+            oldItem.LoginErrorMessage = "Wrong Username or Password";
+            return true;
+        }
+
+        public bool AddItem(ClientModel item)
+        {
+            items.Add(item);
+            return (true);
+        }
+
+        public bool UpdateItem(ClientModel item)
+        {
+            var oldItem = items.Where((ClientModel arg) => arg.Id == item.Id).FirstOrDefault();
+            items.Remove(oldItem);
+            items.Add(item);
+
+            return (true);
+        }
+
+        public bool DeleteItem(string id)
+        {
+            var oldItem = items.Where((ClientModel arg) => arg.Id == id).FirstOrDefault();
+            items.Remove(oldItem);
+
+            return (true);
+        }
+
+        public ClientModel GetItem(string id)
+        {
+            return (items.FirstOrDefault(s => s.Id == id));
+        }
+
+        public bool RemoveModelByModel(ClientModel model)
+        {
+            var item = items.Where(x => x.Id == model.Id).FirstOrDefault();
+            items.Remove(item);
+            return (true);
+        }
+
+        public ClientModel GetItemByItem(ClientModel model)
+        {
+
+            return items.FirstOrDefault(s => s.Id == model.Id);
+        }
+
+        public List<ClientModel> ReturnList()
+        {
+            return items;
+        }
     }
 
     public class MockDataServiceReparationInProgress : IDataService<ModelReparatie>
@@ -281,7 +362,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
             items = new List<ModelBestelling>()
             {
-                new ModelBestelling { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" , StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(HttpContext.Current.Server.MapPath(@"~/Images/Koplampimage.jpg")))  }
+                new ModelBestelling { Id = Guid.NewGuid().ToString(), omschrijving = "Koplamp is stuk" , StoredImage =(HttpPostedFileBase) new MemoryPostedFile(File.ReadAllBytes(HttpContext.Current.Server.MapPath(@"~/Images/Koplampimage.jpg"))), Datum = new DateTime(2020, 12,12), ophalen = OphalenJaNee.ophalen.ja, extrainformatie ="N.V.T", ClientLogin = new ClientModel { Id = Guid.NewGuid().ToString() , AdressNummer = 8, GebruikersNaam = "Lofilover", Naam = "Anna Li", Plaats = "Canada", PostCode = "3435KL", Straatnaam = "Westonroad", telefoonnummer = "08-2366723", Wachtwoord = "dogsarepets" }  }
             };
         }
 

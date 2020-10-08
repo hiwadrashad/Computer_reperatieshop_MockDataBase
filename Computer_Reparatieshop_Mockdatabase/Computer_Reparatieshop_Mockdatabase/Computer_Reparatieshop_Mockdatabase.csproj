@@ -147,7 +147,7 @@
     <Compile Include="Models\ModelBestelling.cs" />
     <Compile Include="Models\ModelReparatie.cs" />
     <Compile Include="Models\ModelStatus.cs" />
-    <Compile Include="Models\OphalenOfNietModel.cs" />
+    <Compile Include="Models\OphalenJaNee.cs" />
     <Compile Include="Models\PartModel.cs" />
     <Compile Include="Models\RolesWerknemer.cs" />
     <Compile Include="Models\WerknemerModel.cs" />
@@ -208,6 +208,10 @@
     <Content Include="Views\Bestelling\WerknemerArea.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Bestelling\ChooseLoginOrCreateAccountKlant.cshtml" />
+    <Content Include="Views\Bestelling\LoginKlant.cshtml" />
+    <Content Include="Views\Bestelling\CreateKlant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

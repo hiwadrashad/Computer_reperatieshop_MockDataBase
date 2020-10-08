@@ -68,7 +68,33 @@
             @Html.LabelFor(model => model.StoredImage)
             <div class="col-md-10">
                 <input type="file" name="StoredImage"><br />
-                @Html.ValidationMessageFor(model => model.omschrijving)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Datum)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Datum)<br />
+                @Html.ValidationMessageFor(model => model.Datum)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.extrainformatie)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.extrainformatie)<br />
+                @Html.ValidationMessageFor(model => model.extrainformatie)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ophalen)
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.ophalen, "Select a list item", new { @class = "form-control" })
+                <!--  @Html.EditorFor(model => model.ophalen)<br /> -->
+                @Html.ValidationMessageFor(model => model.ophalen)
             </div>
         </div>
 

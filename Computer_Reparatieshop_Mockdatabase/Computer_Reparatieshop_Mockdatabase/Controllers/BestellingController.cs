@@ -19,6 +19,20 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View();
         }
 
+        public ActionResult CreateKlant()
+        {
+            return View();
+        }
+
+        [HttpPost]
+
+        public ActionResult CreateKlant(ClientModel clientModel)
+        {
+           
+            Singleton.StoreKlant.AddItem(clientModel);
+            return View("ChooseLoginOrCreateAccountKlant");
+        }
+
         public ActionResult Login()
         {
             
@@ -31,17 +45,33 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
            
             var UserDetails = SingletonData.Singleton.StoreLogin.Login(userModel.username, userModel.password);
-            var UserDetailsWerknemer = Singleton.StoreWerknemerLogin.Login(userModel.username, userModel.password);
+            var UserDetailsWerknemer = Singleton.StoreWerknemer.Login(userModel.username, userModel.password);
             if (UserDetails == true)
             {
                 return View("Adminarea");
             }
             else if (UserDetailsWerknemer == true)
             {
+                var Werknemer = SingletonData.Singleton.StoreWerknemer.
+                SingletonData.Singleton.StoreWerknemer = userModel.;
                 return View("WerknemerArea");
             }
             userModel.LoginErrorMessage = "Wrong username or password";
             return View("Login", userModel);
+
+        }
+
+        [HttpPost]
+        public ActionResult AutherizeKlant(ClientModel userModel)
+        {
+            var UserDetails = SingletonData.Singleton.StoreKlant.Login(userModel.GebruikersNaam, userModel.Wachtwoord);
+            if (UserDetails == true)
+            {
+                SingletonData.Singleton.StoreKlantLoginData = userModel;
+                return View("Create");
+            }
+            userModel.LoginErrorMessage = "Wrong username or password";
+            return View("LoginKlant", userModel);
 
         }
 
@@ -81,13 +111,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                            
-                    model.StoredImage = StoredImage;
-                
+                model.StoredImage = StoredImage;
 
+                model.ClientLogin = Singleton.StoreKlantLoginData;
+                
                 Singleton.StoreClientRequest.AddItem(model);
                 
-
-                return RedirectToAction("ChooseLoginOption");
+                return RedirectToAction("index");
             }
             catch
             {

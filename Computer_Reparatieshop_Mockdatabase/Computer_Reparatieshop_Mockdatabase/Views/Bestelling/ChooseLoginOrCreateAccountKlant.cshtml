@@ -1,0 +1,65 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ChooseLoginOrCreateAccountKlant</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/abstract.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: white;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+            margin: 0 40px 0 40px;
+            font-size: large;
+        }
+
+        .btn {
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div>
+            <button id="button" value="Create" onclick="location.href='@Url.Action("CreateKlant")'">
+                Login
+            </button>
+            <button id="button" value="Werknemer" onclick="location.href='@Url.Action("LoginKlant")'">
+                Creëer account
+            </button>
+        </div>
+    </div>
+</body>
+</html>

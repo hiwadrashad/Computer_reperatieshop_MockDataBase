@@ -1,0 +1,60 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.ClientModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LoginKlant</title>
+</head>
+<body>
+    <div id="login-div">
+        @using (Html.BeginForm("AutherizeKlant", "Bestelling", FormMethod.Post))
+        {
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="text-decoration:underline"> </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.GebruikersNaam)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.GebruikersNaam)
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.GebruikersNaam)</td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Wachtwoord)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.Wachtwoord)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>@Html.ValidationMessageFor(model => model.Wachtwoord)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input id="button" type="submit" name="name" value="Login" />
+                    </td>
+            </table>
+        }
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>

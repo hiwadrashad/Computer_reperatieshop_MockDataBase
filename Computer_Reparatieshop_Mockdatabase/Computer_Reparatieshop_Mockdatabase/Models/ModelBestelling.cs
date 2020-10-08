@@ -18,11 +18,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public ClientModel ClientLogin { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime? Datum { get; set; }
 
-        [Display(Name = "Ophalen of niet")]
+        [Display(Name = "Ophalen ja/nee")]
 
-        public OphalenJaNee opgehaald { get;set;}
+        public OphalenJaNee.ophalen ophalen { get; set; }
+
 
         [Display(Name = "Extra informatie")]
 

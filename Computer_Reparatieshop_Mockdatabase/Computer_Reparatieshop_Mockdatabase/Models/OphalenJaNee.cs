@@ -5,9 +5,12 @@ using System.Web;
 
 namespace Computer_Reparatieshop_Mockdatabase.Models
 {
-    public enum OphalenJaNee
-    { 
-    Ja,
-    Nee
+    public class OphalenJaNee
+    {
+        public enum ophalen
+        { 
+        ja, 
+        nee
+        }
     }
 }
