@@ -13,7 +13,6 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         hoofdreperateur,
         intern,
         coördinator,
-        Admin
         }
     }
 }

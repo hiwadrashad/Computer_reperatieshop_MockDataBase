@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Computer_Reparatieshop_Mockdatabase.Controllers
 {
-    public class LoginController : Controller
+    public class AdminController : Controller
     {
         // GET: Login
         public ActionResult Index()
@@ -29,7 +29,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Login/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Models.WerknemerModel)
         {
             try
             {

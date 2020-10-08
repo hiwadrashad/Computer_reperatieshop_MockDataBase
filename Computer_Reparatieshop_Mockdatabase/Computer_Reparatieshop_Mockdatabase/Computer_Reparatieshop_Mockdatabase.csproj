@@ -132,7 +132,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\OpslagAfController.cs" />
     <Compile Include="Controllers\BezigMetOpdrachtController.cs" />
     <Compile Include="Controllers\BestellingController.cs" />
@@ -153,7 +153,7 @@
     <Compile Include="Models\WerknemerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonData\Singleton.cs" />
-    <Compile Include="ViewModel\ViewModel.cs" />
+    <Compile Include="ViewModel\AddStatusViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -192,13 +192,13 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Datum\Index.cshtml" />
-    <Content Include="Views\Datum\Create.cshtml" />
-    <Content Include="Views\Datum\Delete.cshtml" />
-    <Content Include="Views\Datum\Edit.cshtml" />
-    <Content Include="Views\Reperateur\Index.cshtml" />
-    <Content Include="Views\Reperateur\Create.cshtml" />
-    <Content Include="Views\Reperateur\Details.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\Index.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\Create.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\Delete.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\Edit.cshtml" />
+    <Content Include="Views\OpslagAf\Index.cshtml" />
+    <Content Include="Views\OpslagAf\Create.cshtml" />
+    <Content Include="Views\OpslagAf\Details.cshtml" />
     <Content Include="Views\Bestelling\ChooseLoginOption.cshtml" />
     <Content Include="Views\Bestelling\Create.cshtml" />
     <Content Include="Views\Bestelling\Index.cshtml" />
@@ -206,7 +206,8 @@
     <Content Include="Views\Bestelling\Login.cshtml" />
     <Content Include="Views\Bestelling\ViewImage.cshtml" />
     <Content Include="Views\Bestelling\WerknemerArea.cshtml" />
-    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
