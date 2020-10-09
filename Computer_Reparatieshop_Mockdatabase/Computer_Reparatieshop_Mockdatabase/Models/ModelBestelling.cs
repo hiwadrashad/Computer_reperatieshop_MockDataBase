@@ -16,6 +16,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         [Display(Name = "opgeslagen foto")]
         public HttpPostedFileBase StoredImage { get; set; }
 
+        [Display(Name = "Client")]
         public ClientModel ClientLogin { get; set; }
 
         [DataType(DataType.Date)]

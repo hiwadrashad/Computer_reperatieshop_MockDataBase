@@ -171,6 +171,7 @@
     <Content Include="Images\clearbackground.jpg" />
     <Content Include="Images\KoplampImage.jpg" />
     <Content Include="Images\werknemer.jpg" />
+    <Content Include="Images\Wikipedia_interwiki_section_gear_icon.svg.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -212,6 +213,13 @@
     <Content Include="Views\Bestelling\ChooseLoginOrCreateAccountKlant.cshtml" />
     <Content Include="Views\Bestelling\LoginKlant.cshtml" />
     <Content Include="Views\Bestelling\CreateKlant.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\OnderdelenToevogenIndex.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\CreateOnderdeel.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\EditOnderdeeel.cshtml" />
+    <Content Include="Views\BezigMetOpdracht\DeleteOnderdeel.cshtml" />
+    <Content Include="Views\Admin\DeleteWerknemer.cshtml" />
+    <Content Include="Views\Bestelling\EditWerknemer.cshtml" />
+    <Content Include="Views\Bestelling\EditKlant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

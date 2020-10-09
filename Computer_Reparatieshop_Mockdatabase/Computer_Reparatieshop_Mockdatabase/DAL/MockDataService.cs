@@ -11,57 +11,7 @@ using System.Web.WebSockets;
 
 namespace Computer_Reparatieshop_Mockdatabase.DAL
 {
-    public class MockDataServiceReparationDone :IDataService<ModelReparatie>
-    {
-        public readonly List<ModelReparatie> items;
 
-        public MockDataServiceReparationDone()
-        {
-            items = new List<ModelReparatie>()
-            {
-            new ModelReparatie { Id = Guid.NewGuid().ToString(), EindDatum = new DateTime(2020,12,25), Klant = new ClientModel { Id = Guid.NewGuid().ToString(), AdressNummer = 1, GebruikersNaam = "TheHedge", Naam = "Jan Piet", Plaats = "Utrecht", PostCode = "3445XA", Straatnaam ="Overvechtsestraat", telefoonnummer = "06-37551762", Wachtwoord="Vos789"  }, Omschrijving = "Koplamp is stuk", onderdelen = new PartModel { id = Guid.NewGuid().ToString(), Name = "Caborateur", numberofpartsavailable = 12, qualityofpart = "Moderate" } }
-            };
-        }
-
-        public bool AddItem(ModelReparatie item)
-        {
-            items.Add(item);
-            return  (true);
-        }
-
-        public  bool UpdateItem(ModelReparatie item)
-        {
-            var oldItem = items.Where((ModelReparatie arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
-
-            return  (true);
-        }
-
-        public bool DeleteItem(string id)
-        {
-            var oldItem = items.Where((ModelReparatie arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
-
-            return  (true);
-        }
-
-        public  ModelReparatie GetItem(string id)
-        {
-            return  (items.FirstOrDefault(s => s.Id == id));
-        }
-
-        public List<ModelReparatie> ReturnList()
-        {
-            return items;
-        }
-
-        public int CountItemsList()
-        {
-            return items.Count();
-        }
-
-    }
 
     public class MockDataServiceWerknemer : IDataService<WerknemerModel>
     {
@@ -223,7 +173,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             items = new List<ModelReparatie>()
             {
-                new ModelReparatie { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25), status = new SelectListItem { Text ="in afwachting", Value ="in afwachting"}}
+                new ModelReparatie { Id = Guid.NewGuid().ToString(), StartDatum = new DateTime(2020,9,25),EindDatum = new DateTime(2020,12,25), status = new SelectListItem { Text ="in afwachting", Value ="in afwachting"}, PrijsArbeid = 150, PrijsProducten = 1200, Totaal = 1350, Omschrijving = "Collide lekt", onderdelen = new List<PartModel> { new PartModel { id = Guid.NewGuid().ToString(), Name ="Collide", numberofpartsavailable = 12, qualityofpart = "Medium" } }, Klant = new ClientModel {  Id = Guid.NewGuid().ToString(), AdressNummer = 56, GebruikersNaam = "fox132", Naam = "Donatello", Plaats = "Amersfoort", PostCode = "5645KM", Straatnaam = "Amsterdamseestraatweg", telefoonnummer = "06-3656456", Wachtwoord ="kangaroo6897" }, Reparateur = new WerknemerModel { Id = Guid.NewGuid().ToString(), AdressNummer = 76, Naam = "antilope345", password ="turtle3234", Plaats = "Groningen", PostCode = "5657PG", Straatnaam = "Bernhoflaan", telefoonnummer = "030-26672672", username = "Moose123", rol = RolesWerknemer.Roles.coördinator } }
             };
         }
 
@@ -264,7 +214,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
         public ModelReparatie GetItemByItem(ModelReparatie model)
         {
-           
+
             return items.FirstOrDefault(s => s.Id == model.Id);
         }
 
@@ -273,14 +223,23 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return items;
         }
 
+        public int CountKlaar()
+        {
+            return items.Where(x => x.status == new SelectListItem { Text = "klaar", Value = "klaar" }).Count();
+        }
+
         public int CountInBehandeling()
         {
-            return items.Where(x => x.status == new System.Web.Mvc.SelectListItem { Text = "in afwachting", Value = "in afwachting" }).Count();
+            return items.Where(x => x.status == new System.Web.Mvc.SelectListItem { Text = "in behandeling", Value = "in behandeling" }).Count();
         }
 
         public int CountWachtenOpOnderdelen()
         {
             return items.Where(x => x.status == new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen" }).Count();
+        }
+        public int CountInAfwachting()
+        {
+            return items.Where(x => x.status == new SelectListItem { Text = "in afwachting", Value = "in afwachting" }).Count();
         }
 
     }
@@ -294,8 +253,8 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             items = new Models.ModelStatus()
             {
                 id = Guid.NewGuid().ToString(),
-                aantaalklaar = SingletonData.Singleton.StoreReparationDone.CountItemsList(),
-                aantalinafwachting = SingletonData.Singleton.StoreClientRequest.CountItemsList(),
+                aantaalklaar = SingletonData.Singleton.StoreReparationInProgress.CountKlaar(),
+                aantalinafwachting = SingletonData.Singleton.StoreClientRequest.CountItemsList() + SingletonData.Singleton.StoreReparationInProgress.CountInAfwachting(),
                 aantalinbehandeling = SingletonData.Singleton.StoreReparationInProgress.CountInBehandeling(),
                 aantalwachtoponderdelen = SingletonData.Singleton.StoreReparationInProgress.CountWachtenOpOnderdelen()
             };
@@ -403,5 +362,59 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
             return items.Count();
         }
+
+
+    }
+    public class MockDataServiceStoreParts : IDataService<PartModel>
+    {
+        public readonly List<PartModel> items;
+
+        public MockDataServiceStoreParts()
+        {
+
+            items = new List<PartModel>()
+            {
+                new PartModel { id = Guid.NewGuid().ToString(), Name = "Uitlaat", numberofpartsavailable = 12, qualityofpart = "Good"}
+            };
+        }
+
+        public bool AddItem(PartModel item)
+        {
+            items.Add(item);
+            return (true);
+        }
+
+        public bool UpdateItem(PartModel item)
+        {
+            var oldItem = items.Where((PartModel arg) => arg.id == item.id).FirstOrDefault();
+            items.Remove(oldItem);
+            items.Add(item);
+
+            return (true);
+        }
+
+        public bool DeleteItem(string id)
+        {
+            var oldItem = items.Where((PartModel arg) => arg.id == id).FirstOrDefault();
+            items.Remove(oldItem);
+
+            return (true);
+        }
+
+        public PartModel GetItem(string id)
+        {
+            return (items.FirstOrDefault(s => s.id == id));
+        }
+
+        public List<PartModel> ReturnList()
+        {
+            return items;
+        }
+
+        public int CountItemsList()
+        {
+            return items.Count();
+        }
+
     }
 }

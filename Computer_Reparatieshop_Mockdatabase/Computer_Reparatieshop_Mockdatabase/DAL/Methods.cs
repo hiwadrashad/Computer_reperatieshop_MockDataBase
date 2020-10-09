@@ -62,7 +62,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
        
         public override void ExecutePrinting(string id)
         {
-            var modeltoprint = Singleton.StoreReparationDone.items.Where(x => x.Id == id).FirstOrDefault();
+            var modeltoprint = Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault();
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("host.pdf", FileMode.Create));
             doc.Open();

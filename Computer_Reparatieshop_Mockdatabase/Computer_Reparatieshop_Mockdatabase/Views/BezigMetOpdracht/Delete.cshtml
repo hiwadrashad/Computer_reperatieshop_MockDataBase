@@ -69,6 +69,48 @@
             <dd>
                 @Html.DisplayFor(model => model.status.Value)
             </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Klant)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Klant.Naam)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Omschrijving)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Omschrijving)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.onderdelen)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.onderdelen)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PrijsArbeid)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrijsArbeid)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PrijsProducten)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PrijsProducten)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Reparateur)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Reparateur.Naam)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Totaal)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Totaal)
+            </dd>
         </dl>
     
         @using (Html.BeginForm()) {

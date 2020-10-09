@@ -80,8 +80,8 @@
         </ul>
     </div>
 
-    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("Create")'">
-        Creëer nieuw model
+    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("CreateOnderdeel")'">
+        Voeg nieuw onderdeel toe
     </button>
 
     <table class="table">
@@ -95,6 +95,28 @@
             <th>
                 @Html.DisplayNameFor(Model => Model.status)
             </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Klant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Omschrijving)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.onderdelen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.PrijsArbeid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.PrijsProducten)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Reparateur)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Totaal)
+            </th>
+
         </tr>
 
         @foreach (var item in Model)
@@ -133,7 +155,27 @@
                 @Html.DisplayFor(modelitem => item.status.Text)
             </td>
         }
-
+        <td>
+            @Html.DisplayFor(modelitem => item.Klant.GebruikersNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Omschrijving)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.onderdelen.First().Name) ...
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.PrijsArbeid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.PrijsProducten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Reparateur.Naam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Totaal)
+        </td>
 
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

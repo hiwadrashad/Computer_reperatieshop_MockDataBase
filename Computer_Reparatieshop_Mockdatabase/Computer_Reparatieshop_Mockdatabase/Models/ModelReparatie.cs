@@ -26,9 +26,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public string Omschrijving { get; set; }
 
-        public ClientModel Klant { get; set; }
+        public  ClientModel Klant { get; set; }
+
+        public SelectListItem StoreChoiceKlantFromDropDownList { get; set; }
 
         public WerknemerModel Reparateur { get; set; }
+
+        public SelectListItem StoreChoiceReperateurFromDropDownList { get; set; }
 
         [Display(Name = "Prijs producten")]
         public double PrijsProducten { get; set; }
@@ -39,7 +43,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public double Totaal { get; set; }
 
-        public PartModel onderdelen { get; set; }
+        public List<PartModel> onderdelen { get; set; }
 
     }
 

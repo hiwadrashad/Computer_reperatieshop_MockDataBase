@@ -1,0 +1,91 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.PartModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteOnderdeel</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+            margin: 10px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>Ben je er zeker van dat je dit wilt verwijderen?</h3>
+    <div>
+        <h4>PartModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.numberofpartsavailable)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.numberofpartsavailable)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.qualityofpart)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.qualityofpart)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "OnderdelenToevogenIndex")
+            </div>
+        }
+    </div>
+</body>
+</html>

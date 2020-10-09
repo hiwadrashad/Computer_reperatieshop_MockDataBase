@@ -52,8 +52,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
             else if (UserDetailsWerknemer == true)
             {
-                var Werknemer = SingletonData.Singleton.StoreWerknemer.
-                SingletonData.Singleton.StoreWerknemer = userModel.;
+                var Werknemer = SingletonData.Singleton.StoreWerknemer.ReturnModelByNameAndPassword(userModel.username, userModel.password);
+                SingletonData.Singleton.StoreWerknemerLoginData = Werknemer;
                 return View("WerknemerArea");
             }
             userModel.LoginErrorMessage = "Wrong username or password";
@@ -91,11 +91,6 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View(SingletonData.Singleton.StoreClientRequest.ReturnList());
         }
 
-        // GET: Request/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Request/Create
         public ActionResult Create()
@@ -125,6 +120,50 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
         }
 
-  
+        public ActionResult EditWerknemer()
+        {
+            return View(Singleton.StoreWerknemerLoginData);
+        }
+
+
+        [HttpPost]
+
+        public ActionResult Editwerknemer(WerknemerModel werknemerModel)
+        {
+
+            try
+            {
+                Singleton.StoreWerknemer.UpdateItem(werknemerModel);
+                return RedirectToAction("WerknemerArea");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+        public ActionResult EditKlant()
+        {
+            return View(Singleton.StoreKlantLoginData);
+        }
+
+        [HttpPost]
+
+        public ActionResult EditKlant(ClientModel clientModel)
+        {
+            try
+            {
+                SingletonData.Singleton.StoreKlant.UpdateItem(clientModel);
+                return RedirectToAction("Create");
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
+
     }
 }

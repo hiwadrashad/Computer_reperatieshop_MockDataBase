@@ -46,6 +46,5 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public HttpPostedFileBase Image { get; set; }
 
-        public RolesWerknemer.Roles rol { get; set; }
     }
 }

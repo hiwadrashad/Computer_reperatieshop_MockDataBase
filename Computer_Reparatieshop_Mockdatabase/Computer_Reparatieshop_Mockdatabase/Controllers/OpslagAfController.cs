@@ -20,11 +20,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
  
 
-            foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
             {
                 item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
-            return View(SingletonData.Singleton.StoreReparationDone.ReturnList());
+            return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
         }
 
         // GET: Done/Details/5
@@ -40,11 +40,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult Details(string id)
         {
            
-            foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
             {
                 item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
-            return View(SingletonData.Singleton.StoreReparationDone.items.Where(x => x.Id == id).FirstOrDefault());
+            return View(SingletonData.Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault());
         }
 
         // GET: Done/Create
@@ -61,12 +61,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             {
                 // TODO: Add insert logic here
                 
-                foreach (var item in SingletonData.Singleton.StoreReparationDone.ReturnList())
+                foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
                 {
                     item.Totaal = item.PrijsArbeid + item.PrijsProducten;
                 }
 
-                SingletonData.Singleton.StoreReparationDone.AddItem(model);
+                SingletonData.Singleton.StoreReparationInProgress.AddItem(model);
                 return RedirectToAction("Index");
             }
             catch

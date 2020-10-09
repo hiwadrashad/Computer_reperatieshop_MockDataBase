@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.Models.PartModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OnderdelenToevogenIndex</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+            margin: 10px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "CreateOnderdeel")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numberofpartsavailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qualityofpart)
+            </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numberofpartsavailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qualityofpart)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditOnderdeeel", new { id=item.id }) |
+             <!--  @Html.ActionLink("Details", "Details", new { id=item.id }) | -->
+                @Html.ActionLink("Delete", "DeleteOnderdeel", new { id=item.id })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

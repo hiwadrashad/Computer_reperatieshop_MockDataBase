@@ -44,9 +44,12 @@
             width: 200px;
             margin: 10px 0 0 0;
         }
+
+    
     </style>
 </head>
 <body>
+    <button id="button" class="orientation" value="Redirect" onclick="window.location='@Url.Action("Login", "Bestelling")'">Account Settings</button>
     @using (Html.BeginForm("Create", "Bestelling", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()

@@ -1,4 +1,5 @@
-﻿using Computer_Reparatieshop_Mockdatabase.SingletonData;
+﻿using Computer_Reparatieshop_Mockdatabase.Models;
+using Computer_Reparatieshop_Mockdatabase.SingletonData;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -66,18 +67,19 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Login/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult DeleteWerknemer(string id)
         {
             return View();
         }
 
         // POST: Login/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, WerknemerModel werknemerModel)
         {
             try
             {
                 // TODO: Add delete logic here
+                SingletonData.Singleton.StoreWerknemer.DeleteItem(werknemerModel.Id);
 
                 return RedirectToAction("Index");
             }

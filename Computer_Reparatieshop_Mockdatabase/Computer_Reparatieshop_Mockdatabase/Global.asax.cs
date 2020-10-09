@@ -17,11 +17,12 @@ namespace Computer_Reparatieshop_Mockdatabase
             {
                 SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
                 SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
-                SingletonData.Singleton.StoreReparationDone = new MockDataServiceReparationDone();
+                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
                 SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
                 SingletonData.Singleton.StoreFactory = new Factory();
                 SingletonData.Singleton.StoreWerknemer = new MockDataServiceWerknemer();
                 SingletonData.Singleton.StoreKlant = new MockDataServiceKlant();
+                SingletonData.Singleton.StoreParts = new MockDataServiceStoreParts();
                 SingletonData.Singleton.AllInitialized = true;
             }
             AreaRegistration.RegisterAllAreas();

@@ -1,0 +1,131 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.WerknemerModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 40px;
+            font-weight: bolder;
+            width: 200px;
+            margin: 10px 0 0 0;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteWerknemer</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>WerknemerModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.username)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.username)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Naam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Naam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Straatnaam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Straatnaam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AdressNummer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AdressNummer)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PostCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PostCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Plaats)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Plaats)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.telefoonnummer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.telefoonnummer)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
