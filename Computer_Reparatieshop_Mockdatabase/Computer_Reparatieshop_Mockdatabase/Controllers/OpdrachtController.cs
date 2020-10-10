@@ -12,10 +12,10 @@ using System.Web.WebSockets;
 
 namespace Computer_Reparatieshop_Mockdatabase.Controllers
 {
-    public class BezigMetOpdrachtController : Controller
+    public class OpdrachtController : Controller
     {
         // GET: Progress
-        public ActionResult Index()
+        public ActionResult OpdrachtenOverview()
         {
             ViewBag.Bar = Singleton.StoreFactory.overview.CountStatus();
             return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
@@ -24,26 +24,21 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         // GET: Progress/Create
-        public ActionResult Create()
+        public ActionResult AddNewopdracht()
         {
             return View();
         }
 
         // POST: Progress/Create
         [HttpPost]
-        public ActionResult Create(Models.ModelReparatie progressviewmodel)
+        public ActionResult AddNewopdracht(Models.ModelReparatie progressviewmodel)
         {
             try
             {
                 
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
-                if (progressviewmodel.status.Value == "klaar")
-                {
-                    return RedirectToAction("Create", "OpslagAf");
-                }
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("OpdrachtenOverview");
             }
             catch
             {
@@ -52,7 +47,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Progress/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult ChangeDataOpdracht(string id)
         {
             List<SelectListItem> GenerateDropDownDataFromPart = new List<SelectListItem>();
             foreach (var item in SingletonData.Singleton.StoreParts.items)
@@ -62,7 +57,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
             MultiSelectList selectListItems = new MultiSelectList(GenerateDropDownDataFromPart, "", "");
 
-            ViewBag.ClientDrop
+          //  ViewBag.ClientDrop
          
             List<SelectListItem> GenerateDropdDownDataFromClients = new List<SelectListItem>();
             foreach (var item in SingletonData.Singleton.StoreKlant.items)
@@ -84,7 +79,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Edit/5
         [HttpPost]
-        public ActionResult Edit(Models.ModelReparatie model, int i = 0)
+        public ActionResult ChangeDataOpdracht(Models.ModelReparatie model, int i = 0)
         {
             try
             {
@@ -92,7 +87,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 model.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
                 model.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
                 SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model);
-                return RedirectToAction("Index");
+                return RedirectToAction("OpdrachtenOverview");
             }
             catch
             {
@@ -100,73 +95,9 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
         }
 
-        public ActionResult OnderdelenToevogenIndex()
-        {
-            return View(Singleton.StoreParts.items.ToList());
-        }
 
-        public ActionResult CreateOnderdeel()
-        {
-            return View();
-        }
-
-        [HttpPost]
-
-        public ActionResult CreateOnderdeel(PartModel partModel)
-        {
-            try
-            {
-                Singleton.StoreParts.AddItem(partModel);
-                return RedirectToAction("OnderdelenToevogenIndex");
-            }
-            catch
-            {
-                return View();
-            }
-
-        }
-
-        public ActionResult EditOnderdeeel(string id)
-        {
-            return View(Singleton.StoreParts.GetItem(id));
-        }
-
-        [HttpPost]
-
-        public ActionResult EditOnderdeeel(PartModel partModel)
-        {
-            try
-            {
-                Singleton.StoreParts.UpdateItem(partModel);
-                return RedirectToAction("OnderdelenToevogenIndex");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult DeleteOnderdeel(string id)
-        {
-            return View(Singleton.StoreParts.GetItem(id));
-        }
-
-        [HttpPost]
-
-        public ActionResult DeleteOnderdeel(PartModel partModel)
-        {
-            try
-            {
-                Singleton.StoreParts.DeleteItem(partModel.id);
-                return RedirectToAction("OnderdelenToevogenIndex");
-            }
-            catch
-            {
-                return View();
-            }
-        }
         // GET: Progress/Delete/5
-        public ActionResult Delete(Models.ModelReparatie model)
+        public ActionResult DeleteOpdracht(Models.ModelReparatie model)
         {
             
             return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
@@ -174,7 +105,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Delete/5
         [HttpPost]
-        public ActionResult Delete(Models.ModelReparatie model, int i = 0)
+        public ActionResult DeleteOpdracht(Models.ModelReparatie model, int i = 0)
         {
             try
             {
@@ -182,7 +113,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 var item = SingletonData.Singleton.StoreReparationInProgress.RemoveModelByModel(model);
                 // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                return RedirectToAction("OpdrachtenOverview");
             }
             catch
             {

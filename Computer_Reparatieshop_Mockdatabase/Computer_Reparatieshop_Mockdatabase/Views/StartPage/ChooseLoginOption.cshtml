@@ -39,23 +39,20 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
-            margin: 0 40px 0 40px;
-            font-size:large;
-        }
-        .btn {
-        
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
     </style>
 </head>
 <body>
     <div>
-        <button id="button" value="Create" onclick="location.href='@Url.Action("Create")'">
+        <button id="button" value="Create" onclick="location.href='@Url.Action("ChooseLoginOrCreateAccountKlant","Klant")'">
             Klant
         </button>
-        <button id="button" value="Werknemer" onclick="location.href='@Url.Action("Login")'">
+        <button id="button" value="Werknemer" onclick="location.href='@Url.Action("Login", "LoginController")'">
             Werknemer
         </button>
     </div>

@@ -42,20 +42,14 @@
             height: 50px;
             font-weight: bolder;
             width: 250px;
-            margin: 0 40px 0 40px;
+            margin: 10px 40px 10px 40px;
             font-size: large;
-        }
-
-        .btn {
-            background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
-            color: transparent;
-            height: 80px;
         }
     </style>
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Voeg nieuwe werknemer toe", "Create")
     </p>
     <table class="table">
         <tr>
@@ -126,8 +120,8 @@
             @Html.DisplayFor(modelItem => item.rol)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Verander gegevens", "ChangeDataWerknemer", new { id = item.Id }) |
+            @Html.ActionLink("Verwijder", "DeleteWerknemer", new { id = item.Id })
         </td>
     </tr>
     }

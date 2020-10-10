@@ -40,19 +40,22 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
+
         #header {
-        position:absolute;
-        top: 0px;
-        background-color: deepskyblue;
-        background-size:500px;
-        width: 130%;
-        transform:translateX(-50%);
-        display: inline;
-        height:70px;
+            position: absolute;
+            top: 0px;
+            background-color: deepskyblue;
+            background-size: 500px;
+            width: 130%;
+            transform: translateX(-50%);
+            display: inline;
+            height: 70px;
         }
         #list {
          display:inline-block;
@@ -80,7 +83,7 @@
         </ul>
     </div>
 
-    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("CreateOnderdeel")'">
+    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("AddNewopdracht")'">
         Voeg nieuw onderdeel toe
     </button>
 
@@ -178,9 +181,9 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Verander gegevens", "ChangeDataOpdracht", new { id = item.Id }) |
             <!--  @Html.ActionLink("Details", "Details", new { id = item.Id }) |-->
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Verwijder opdracht", "DeleteOpdracht", new { id = item.Id })
         </td>
     </tr>
         }

@@ -12,7 +12,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
     public class AdminController : Controller
     {
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Adminarea()
+        {
+            return View();
+        }
+
+        public ActionResult WerknemerOverview()
         {
 
             return View(SingletonData.Singleton.StoreWerknemer.items.ToList());
@@ -21,20 +26,20 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         // GET: Login/Create
-        public ActionResult Create()
+        public ActionResult AddnewWerknemer()
         {
             return View();
         }
 
         // POST: Login/Create
         [HttpPost]
-        public ActionResult Create(Models.WerknemerModel werknemerModel)
+        public ActionResult AddnewWerknemer(Models.WerknemerModel werknemerModel)
         {
             try
             {
                 // TODO: Add insert logic here
                 SingletonData.Singleton.StoreWerknemer.AddItem(werknemerModel);
-                return RedirectToAction("Index");
+                return RedirectToAction("WerknemerOverview");
             }
             catch
             {
@@ -43,7 +48,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Login/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult ChangeDataWerknemer(string id)
         {
            
             return View(SingletonData.Singleton.StoreWerknemer.GetItem(id));
@@ -52,13 +57,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
       
         // POST: Login/Edit/5
         [HttpPost]
-        public ActionResult Edit(string id, Models.WerknemerModel werknemerModel)
+        public ActionResult ChangeDataWerknemer(string id, Models.WerknemerModel werknemerModel)
         {
             try
             {
                 // TODO: Add update logic here
                 SingletonData.Singleton.StoreWerknemer.UpdateItem(werknemerModel);
-                return RedirectToAction("Index");
+                return RedirectToAction("WerknemerOverview");
             }
             catch
             {
@@ -74,14 +79,14 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Login/Delete/5
         [HttpPost]
-        public ActionResult Delete(string id, WerknemerModel werknemerModel)
+        public ActionResult DeleteWerknemer(string id, WerknemerModel werknemerModel)
         {
             try
             {
                 // TODO: Add delete logic here
                 SingletonData.Singleton.StoreWerknemer.DeleteItem(werknemerModel.Id);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("WerknemerOverview");
             }
             catch
             {

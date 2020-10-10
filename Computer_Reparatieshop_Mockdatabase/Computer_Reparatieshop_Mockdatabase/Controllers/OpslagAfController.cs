@@ -29,14 +29,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // GET: Done/Details/5
 
-        public ActionResult Print(string id)
-        {
 
-          Singleton.StoreFactory.print.ExecutePrinting(id);
-
-
-            return RedirectToAction("Index");
-        }
         public ActionResult Details(string id)
         {
            

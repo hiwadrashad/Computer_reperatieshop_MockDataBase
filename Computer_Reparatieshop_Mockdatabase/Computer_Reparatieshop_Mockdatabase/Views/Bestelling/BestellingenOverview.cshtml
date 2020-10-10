@@ -39,13 +39,16 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
     </style>
 </head>
 <body>
+    <button id="button" class="orientation" value="Redirect" onclick="window.location='@Url.Action("Bestelling", "Klant")'">Account Settings</button>
     <table class="table">
         <tr>
             <th>
@@ -70,30 +73,30 @@
 
         @foreach (var item in Model)
         {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelitem => item.omschrijving)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.ClientLogin.GebruikersNaam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.Datum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.extrainformatie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.ophalen)
-        </td>
-        <td>
-            @Html.ActionLink("Open image", "Openfile", new { id = item.Id })
-        </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.omschrijving)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ClientLogin.GebruikersNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Datum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.extrainformatie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ophalen)
+                </td>
+                <td>
+                    @Html.ActionLink("Open image", "Openfile", new { id = item.Id })
+                </td>
 
-    </tr>
+            </tr>
         }
 
     </table>

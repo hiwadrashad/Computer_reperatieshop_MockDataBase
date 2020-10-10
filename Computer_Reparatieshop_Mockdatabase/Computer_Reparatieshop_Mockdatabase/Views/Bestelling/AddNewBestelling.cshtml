@@ -39,18 +39,18 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
-            margin: 10px 0 0 0;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
 
     
     </style>
 </head>
 <body>
-    <button id="button" class="orientation" value="Redirect" onclick="window.location='@Url.Action("Login", "Bestelling")'">Account Settings</button>
-    @using (Html.BeginForm("Create", "Bestelling", FormMethod.Post, new { enctype = "multipart/form-data"}))
+    @using (Html.BeginForm("AddNewBestelling", "Bestelling", FormMethod.Post, new { enctype = "multipart/form-data"}))
     {
         @Html.AntiForgeryToken()
         

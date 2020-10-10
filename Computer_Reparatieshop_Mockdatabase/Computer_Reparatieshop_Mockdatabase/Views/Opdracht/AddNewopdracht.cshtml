@@ -39,10 +39,11 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
-            margin: 10px 0 0 0;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
     </style>
 </head>
@@ -99,9 +100,7 @@
             </div>
         </div>
     }
-    <button id="button" value="Terug" onclick="location.href='@Url.Action("Index")'">
-        Terug
-    </button>
+    <button id="button" onclick="history.go(-1);">Go Back</button>  @Html.ActionLink("Terug", null, null, null, new { href = Request.UrlReferrer })
 
 </body>
 </html>

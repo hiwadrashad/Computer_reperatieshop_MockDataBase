@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>WerknemeArea</title>
+    <title></title>
     <style>
 
         html, body {
@@ -41,32 +41,23 @@
             height: 50px;
             font-weight: bolder;
             width: 250px;
-            margin: 0 40px 0 40px;
+            margin: 10px 40px 10px 40px;
             font-size: large;
-        }
-
-        .btn {
-            background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
-            color: transparent;
-            height: 80px;
         }
     </style>
 </head>
 <body>
     <div>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","OpslagAf")'">
-            Uitgevoerde opdrachten
+        <button id="button" value="Index" onclick="location.href='@Url.Action("OpdrachtenOverview","Opdracht")'">
+            Opdrachten
         </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("Index","BezigMetOpdracht")'">
-            Opdrachten in progressie
+        <button id="button" value="Index" onclick="location.href='@Url.Action("BestellingenOverview", "Bestelling")'">
+           Bestellingen
         </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("Index")'">
-            Opdrachten in afwachting
+        <button id="button" value="Index" onclick="location.href='@Url.Action("OnderdelenOverview", "Parts")'">
+            Onderdelen
         </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("OnderdelenToevogenIndex", "BezigMetOpdracht")'">
-            Onderdelen toevoegen
-        </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("EditWerknemer")'">
+        <button id="button" value="Index" onclick="location.href='@Url.Action("ChangeDataWerknemer")'">
            Verander account settings
         </button>
     </div>

@@ -39,10 +39,11 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
-            margin: 10px 0 0 0;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
     </style>
 </head>
@@ -52,7 +53,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>PartModel</h4>
+            <h4></h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.id)
@@ -89,8 +90,8 @@
         </div>
     }
     
-    <div>
-        @Html.ActionLink("Back to List", "OnderdelenToevogenIndex")
-    </div>
+<div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
+</div>
 </body>
 </html>

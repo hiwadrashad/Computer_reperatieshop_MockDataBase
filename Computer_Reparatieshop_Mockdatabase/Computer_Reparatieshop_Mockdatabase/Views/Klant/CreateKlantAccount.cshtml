@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>EditKlant</title>
+    <title>CreateKlant</title>
     <style>
 
         html, body {
@@ -39,24 +39,23 @@
             border: none;
             color: white;
             background-color: aqua;
-            height: 40px;
+            height: 50px;
             font-weight: bolder;
-            width: 200px;
-            margin: 10px 0 0 0;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
         }
     </style>
 </head>
 <body>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm()) 
     {
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>ClientModel</h4>
+            <h4></h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-    
             <div class="form-group">
                 @Html.LabelFor(model => model.GebruikersNaam, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -64,7 +63,7 @@
                     @Html.ValidationMessageFor(model => model.GebruikersNaam, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
     
             <div class="form-group">
                 @Html.LabelFor(model => model.Wachtwoord, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -124,14 +123,14 @@
     
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
     
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
+</div>
 </body>
 </html>

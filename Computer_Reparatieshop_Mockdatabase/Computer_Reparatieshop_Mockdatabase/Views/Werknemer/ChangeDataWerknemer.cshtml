@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
+    <title>EditWerknemer</title>
     <style>
 
         html, body {
@@ -42,14 +42,8 @@
             height: 50px;
             font-weight: bolder;
             width: 250px;
-            margin: 0 40px 0 40px;
+            margin: 10px 40px 10px 40px;
             font-size: large;
-        }
-
-        .btn {
-            background-image: url(../../Images/button_uitgevoerde-opdrachten.png);
-            color: transparent;
-            height: 80px;
         }
     </style>
 </head>
@@ -59,7 +53,7 @@
         @Html.AntiForgeryToken()
         
         <div class="form-horizontal">
-            <h4>WerknemerModel</h4>
+            <h4></h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
@@ -79,7 +73,6 @@
                     @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
                 </div>
             </div>
-   
     
             <div class="form-group">
                 @Html.LabelFor(model => model.Naam, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -137,8 +130,8 @@
         </div>
     }
     
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
+<div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
+</div>
 </body>
 </html>
