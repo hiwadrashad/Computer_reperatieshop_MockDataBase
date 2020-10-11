@@ -31,6 +31,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddNewopdracht(Models.ModelReparatie progressviewmodel)
         {
             try
@@ -79,6 +80,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Progress/Edit/5
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ChangeDataOpdracht(Models.ModelReparatie model, int i = 0)
         {
             try
@@ -97,15 +99,16 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         // GET: Progress/Delete/5
-        public ActionResult DeleteOpdracht(Models.ModelReparatie model)
+        public ActionResult DeleteOpdracht(string id)
         {
             
-            return View(SingletonData.Singleton.StoreReparationInProgress.GetItemByItem(model));
+            return View(SingletonData.Singleton.StoreReparationInProgress.GetItem(id));
         }
 
         // POST: Progress/Delete/5
         [HttpPost]
-        public ActionResult DeleteOpdracht(Models.ModelReparatie model, int i = 0)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteOpdracht(Models.ModelReparatie model)
         {
             try
             {

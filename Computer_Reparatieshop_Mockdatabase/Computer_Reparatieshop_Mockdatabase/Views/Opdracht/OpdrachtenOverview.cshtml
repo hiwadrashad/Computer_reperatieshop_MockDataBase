@@ -184,6 +184,7 @@
             @Html.ActionLink("Verander gegevens", "ChangeDataOpdracht", new { id = item.Id }) |
             <!--  @Html.ActionLink("Details", "Details", new { id = item.Id }) |-->
             @Html.ActionLink("Verwijder opdracht", "DeleteOpdracht", new { id = item.Id })
+            @Html.ActionLink("Print Rekening", "Print", "Others", new { id = item.Id}, null)
         </td>
     </tr>
         }

@@ -11,18 +11,47 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
     public class KlantController : Controller
     {
         // GET: Klant
+
+        public ActionResult ChangeDataKlantOnlyForEmployees(string id)
+        {
+            return View(Singleton.StoreKlant.GetItem(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult KlantOverviewOnlyForEmployees(ClientModel clientModel)
+        {
+            SingletonData.Singleton.StoreKlant.UpdateItem(clientModel);
+            return RedirectToAction("KlantOverviewOnlyForEmployees");
+        }
+
+        public ActionResult DeleteDataKlantOnlyForEmployees(string id)
+        {
+            return View(Singleton.StoreKlant.GetItem(id));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult DeleteDataKlantOnlyForEmployees(ClientModel clientModel)
+        {
+            SingletonData.Singleton.StoreKlant.DeleteItem(clientModel.Id);
+            return RedirectToAction("KlantOverviewOnlyForEmployees");
+        }
+
         public ActionResult CreateKlantAccount()
         {
             return View();
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public ActionResult CreateKlantAccount(ClientModel clientModel)
         {
 
             Singleton.StoreKlant.AddItem(clientModel);
-            return View("ChooseLoginOrCreateAccountKlant");
+            return RedirectToAction("ChooseLoginOrCreateAccountKlant");
         }
 
 
@@ -32,6 +61,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public ActionResult ChangeDataKlant(ClientModel clientModel)
         {
@@ -46,5 +76,14 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
 
         }
+
+        public ActionResult KlantOverviewOnlyForEmployees()
+        {
+            return View();
+        }
+
+
+
+  
     }
 }

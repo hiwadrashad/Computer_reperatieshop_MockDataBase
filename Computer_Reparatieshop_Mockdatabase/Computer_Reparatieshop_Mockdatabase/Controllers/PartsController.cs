@@ -22,7 +22,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult VoegNieuwOnderdeelToe(PartModel partModel)
         {
             try
@@ -43,7 +43,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult VeranderDataOnderdeeel(PartModel partModel)
         {
             try
@@ -63,6 +63,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public ActionResult DeleteOnderdeel(PartModel partModel)
         {

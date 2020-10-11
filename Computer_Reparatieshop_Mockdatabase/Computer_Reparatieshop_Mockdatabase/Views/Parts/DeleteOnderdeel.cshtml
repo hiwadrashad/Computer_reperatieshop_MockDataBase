@@ -56,37 +56,38 @@
             <dt>
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Name)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.numberofpartsavailable)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.numberofpartsavailable)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.qualityofpart)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.qualityofpart)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <button id="button" onclick="history.go(-1);">Go Back</button>
-    </div>
+
+            <div class="form-actions no-color">
+                <input id="button" type="submit" value="Delete" class="btn btn-default" /> |
+            </div>
         }
     </div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
 </body>
 </html>

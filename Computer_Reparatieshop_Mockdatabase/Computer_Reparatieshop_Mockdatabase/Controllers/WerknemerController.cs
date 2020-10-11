@@ -14,6 +14,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         // GET: Login/Edit/5
+
+        public ActionResult WerknemerArea()
+        {
+            return View();
+        }
+
         public ActionResult ChangeDataWerknemer()
         {
             return View(Singleton.StoreWerknemerLoginData);
@@ -21,7 +27,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
         public ActionResult ChangeDataWerknemer(WerknemerModel werknemerModel)
         {
 

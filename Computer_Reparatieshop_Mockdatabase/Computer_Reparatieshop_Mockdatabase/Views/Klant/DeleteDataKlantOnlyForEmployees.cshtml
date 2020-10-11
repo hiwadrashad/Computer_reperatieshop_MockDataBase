@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.Models.WerknemerModel
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.ClientModel
 
 @{
     Layout = null;
@@ -8,6 +8,8 @@
 
 <html>
 <head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteDataKlantOnlyForEmployees</title>
     <style>
 
         html, body {
@@ -44,89 +46,97 @@
             font-size: large;
         }
     </style>
-    <meta name="viewport" content="width=device-width" />
-    <title>DeleteWerknemer</title>
 </head>
 <body>
-    <h3>ben je er zeker van om dit te verwijderen?</h3>
+    <h3>Ben je er zeker van dat je dit wilt verwijderen?</h3>
     <div>
         <h4></h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.username)
+                @Html.DisplayNameFor(model => model.GebruikersNaam)
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.username)
+                @Html.DisplayFor(model => model.GebruikersNaam)
             </dd>
-    
+
             <dt>
-                @Html.DisplayNameFor(model => model.password)
+                @Html.DisplayNameFor(model => model.LoginErrorMessage)
             </dt>
-    
+
             <dd>
-                @Html.DisplayFor(model => model.password)
+                @Html.DisplayFor(model => model.LoginErrorMessage)
             </dd>
-    
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Wachtwoord)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wachtwoord)
+            </dd>
+
             <dt>
                 @Html.DisplayNameFor(model => model.Naam)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Naam)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Straatnaam)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Straatnaam)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.AdressNummer)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.AdressNummer)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.PostCode)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.PostCode)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.Plaats)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.Plaats)
             </dd>
-    
+
             <dt>
                 @Html.DisplayNameFor(model => model.telefoonnummer)
             </dt>
-    
+
             <dd>
                 @Html.DisplayFor(model => model.telefoonnummer)
             </dd>
-    
+
         </dl>
-    
-        @using (Html.BeginForm()) {
+
+        @using (Html.BeginForm())
+        {
             @Html.AntiForgeryToken()
-    
-    <div class="form-actions no-color">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <button id="button" onclick="history.go(-1);">Go Back</button>
-    </div>
+
+            <div class="form-actions no-color">
+                <input type="submit" id="button" value="Delete" class="btn btn-default" /> |
+
+            </div>
         }
     </div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
 </body>
 </html>

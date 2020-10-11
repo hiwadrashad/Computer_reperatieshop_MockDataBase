@@ -210,9 +210,9 @@
     <Content Include="Views\LoginController\Login.cshtml" />
     <Content Include="Views\Others\ViewImage.cshtml" />
     <Content Include="Views\Werknemer\WerknemerArea.cshtml" />
-    <Content Include="Views\Admin\WerknemerOverview.cshtml" />
-    <Content Include="Views\Admin\AddNewWerknemer.cshtml" />
-    <Content Include="Views\Admin\ChangeDataWerknemer.cshtml" />
+    <Content Include="Views\Admin\WerknemerOverviewOnlyForAdmin.cshtml" />
+    <Content Include="Views\Admin\AddNewWerknemerOnlyForAdmin.cshtml" />
+    <Content Include="Views\Admin\ChangeDataWerknemerOnlyForAdmin.cshtml" />
     <Content Include="Views\Klant\ChooseLoginOrCreateAccountKlant.cshtml" />
     <Content Include="Views\LoginController\LoginKlant.cshtml" />
     <Content Include="Views\Klant\CreateKlantAccount.cshtml" />
@@ -220,12 +220,15 @@
     <Content Include="Views\Parts\VoegNieuwOnderdeelToe.cshtml" />
     <Content Include="Views\Parts\VeranderDataOnderdeeel.cshtml" />
     <Content Include="Views\Parts\DeleteOnderdeel.cshtml" />
-    <Content Include="Views\Admin\DeleteWerknemer.cshtml" />
+    <Content Include="Views\Admin\DeleteWerknemerOnlyForAdmin.cshtml" />
     <Content Include="Views\Werknemer\ChangeDataWerknemer.cshtml" />
     <Content Include="Views\Klant\ChangeDataKlant.cshtml" />
     <Content Include="Views\OpslagAf\Create.cshtml" />
     <Content Include="Views\OpslagAf\Details.cshtml" />
     <Content Include="Views\OpslagAf\Index.cshtml" />
+    <Content Include="Views\Klant\KlantOverviewOnlyForEmployees.cshtml" />
+    <Content Include="Views\Klant\ChangeDataKlantOnlyForEmployees.cshtml" />
+    <Content Include="Views\Klant\DeleteDataKlantOnlyForEmployees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

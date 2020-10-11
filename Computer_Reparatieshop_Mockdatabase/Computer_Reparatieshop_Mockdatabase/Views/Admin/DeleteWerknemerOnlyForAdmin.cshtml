@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.WerknemerModel
 
 @{
     Layout = null;
@@ -8,8 +8,6 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
     <style>
 
         html, body {
@@ -46,73 +44,79 @@
             font-size: large;
         }
     </style>
+    <meta name="viewport" content="width=device-width" />
+    <title>DeleteWerknemer</title>
 </head>
 <body>
-    <h3>Ben je er zeker van dat je dit wilt verwijderen?</h3>
+    <h3>ben je er zeker van om dit te verwijderen?</h3>
     <div>
         <h4></h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.StartDatum)
+                @Html.DisplayNameFor(model => model.username)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.StartDatum)
+                @Html.DisplayFor(model => model.username)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.EindDatum)
+                @Html.DisplayNameFor(model => model.password)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.EindDatum)
+                @Html.DisplayFor(model => model.password)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.status)
+                @Html.DisplayNameFor(model => model.Naam)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.status.Value)
+                @Html.DisplayFor(model => model.Naam)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.Klant)
+                @Html.DisplayNameFor(model => model.Straatnaam)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.Klant.Naam)
+                @Html.DisplayFor(model => model.Straatnaam)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.Omschrijving)
+                @Html.DisplayNameFor(model => model.AdressNummer)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.Omschrijving)
+                @Html.DisplayFor(model => model.AdressNummer)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.onderdelen)
+                @Html.DisplayNameFor(model => model.PostCode)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.onderdelen)
+                @Html.DisplayFor(model => model.PostCode)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.PrijsArbeid)
+                @Html.DisplayNameFor(model => model.Plaats)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.PrijsArbeid)
+                @Html.DisplayFor(model => model.Plaats)
             </dd>
+
             <dt>
-                @Html.DisplayNameFor(model => model.PrijsProducten)
+                @Html.DisplayNameFor(model => model.telefoonnummer)
             </dt>
+
             <dd>
-                @Html.DisplayFor(model => model.PrijsProducten)
+                @Html.DisplayFor(model => model.telefoonnummer)
             </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Reparateur)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Reparateur.Naam)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Totaal)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Totaal)
-            </dd>
+
         </dl>
 
         @using (Html.BeginForm())
@@ -121,8 +125,8 @@
 
             <div class="form-actions no-color">
                 <input id="button" type="submit" value="Delete" class="btn btn-default" /> |
-            </div>
 
+            </div>
         }
         <button id="button" onclick="history.go(-1);">Go Back</button>
     </div>

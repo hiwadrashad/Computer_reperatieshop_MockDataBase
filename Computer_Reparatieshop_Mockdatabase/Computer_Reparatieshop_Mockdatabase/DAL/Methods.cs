@@ -62,11 +62,14 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
        
         public override void ExecutePrinting(string id)
         {
+
             var modeltoprint = Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault();
+            string onderdelen = "";
+            foreach (var item in modeltoprint.onderdelen) { onderdelen = onderdelen + "@" + item.Name; }
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("host.pdf", FileMode.Create));
             doc.Open();
-            string storestring1 = "Klant: " + modeltoprint.Klant + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur + "@" + "Totaal Prijs" + modeltoprint.Totaal + "@" + "Onderelen: " + modeltoprint.onderdelen;
+            string storestring1 = "Klant: " + modeltoprint.Klant.Naam + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur.Naam + "@" + "Totaal Prijs: " + modeltoprint.Totaal + "@" + "Onderelen: " + onderdelen;
             string addnewlines1 = storestring1.Replace("@", Environment.NewLine);
             Paragraph paragraph = new Paragraph(addnewlines1);
             paragraph.IndentationRight = 100;

@@ -31,6 +31,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Request/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult AddNewBestelling(ModelBestelling model, HttpPostedFileBase StoredImage)
         {
             try

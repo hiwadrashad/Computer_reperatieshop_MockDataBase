@@ -17,7 +17,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View();
         }
 
-        public ActionResult WerknemerOverview()
+        public ActionResult WerknemerOverviewOnlyForAdmin()
         {
 
             return View(SingletonData.Singleton.StoreWerknemer.items.ToList());
@@ -26,14 +26,15 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
 
         // GET: Login/Create
-        public ActionResult AddnewWerknemer()
+        public ActionResult AddnewWerknemerOnlyForAdmin()
         {
             return View();
         }
 
         // POST: Login/Create
         [HttpPost]
-        public ActionResult AddnewWerknemer(Models.WerknemerModel werknemerModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddnewWerknemerOnlyForAdmin(Models.WerknemerModel werknemerModel)
         {
             try
             {
@@ -48,7 +49,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Login/Edit/5
-        public ActionResult ChangeDataWerknemer(string id)
+        
+        public ActionResult ChangeDataWerknemerOnlyForAdmin(string id)
         {
            
             return View(SingletonData.Singleton.StoreWerknemer.GetItem(id));
@@ -57,7 +59,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
       
         // POST: Login/Edit/5
         [HttpPost]
-        public ActionResult ChangeDataWerknemer(string id, Models.WerknemerModel werknemerModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeDataWerknemerOnlyForAdmin(string id, Models.WerknemerModel werknemerModel)
         {
             try
             {
@@ -72,14 +75,15 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         // GET: Login/Delete/5
-        public ActionResult DeleteWerknemer(string id)
+        public ActionResult DeleteWerknemerOnlyForAdmin(string id)
         {
             return View();
         }
 
         // POST: Login/Delete/5
         [HttpPost]
-        public ActionResult DeleteWerknemer(string id, WerknemerModel werknemerModel)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteWerknemerOnlyForAdmin(string id, WerknemerModel werknemerModel)
         {
             try
             {

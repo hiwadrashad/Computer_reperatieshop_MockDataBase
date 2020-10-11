@@ -95,7 +95,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ophalen)
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.ophalen, "Select a list item", new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.ophalen, "Selecteer keuze", new { @class = "form-control" })
                 <!--  @Html.EditorFor(model => model.ophalen)<br /> -->
                 @Html.ValidationMessageFor(model => model.ophalen)
             </div>
@@ -110,7 +110,8 @@
     </div>
     }
     
-    <div>
-    </div>
+<div>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
+</div>
 </body>
 </html>

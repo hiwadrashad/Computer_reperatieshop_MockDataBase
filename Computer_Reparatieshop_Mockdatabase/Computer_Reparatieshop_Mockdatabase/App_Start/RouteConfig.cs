@@ -16,7 +16,7 @@ namespace Computer_Reparatieshop_Mockdatabase
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "WerknemerOverview", id = UrlParameter.Optional }
+                defaults: new { controller = "Opdracht", action = "OpdrachtenOverview", id = UrlParameter.Optional }
             );
         }
     }

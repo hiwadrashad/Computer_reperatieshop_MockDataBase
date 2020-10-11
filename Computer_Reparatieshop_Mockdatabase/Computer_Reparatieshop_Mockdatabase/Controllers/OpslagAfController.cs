@@ -48,6 +48,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         // POST: Done/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Models.ModelReparatie model)
         {
             try

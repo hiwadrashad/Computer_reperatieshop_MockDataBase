@@ -48,14 +48,20 @@
 </head>
 <body id="login-div">
     <div>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("OpdrachtenOverview","Opdracht")'">
+        <button id="button" value="Index" onclick="location.href='@Url.Action("OpdrachtenOverviewOn","Opdracht")'">
             Opdrachten
         </button>
         <button id="button" value="Index" onclick="location.href='@Url.Action("BestellingenOverview","Bestelling")'">
             Bestellingen
         </button>
-        <button id="button" value="Index" onclick="location.href='@Url.Action("WerknemerOverview")'">
-             Werknemers
+        <button id="button" value="Index" onclick="location.href='@Url.Action("WerknemerOverviewOnlyForAdmin")'">
+            Werknemers
+        </button>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("OnderdelenOverview", "Parts")'">
+            Onderdelen
+        </button>
+        <button id="button" value="Index" onclick="location.href='@Url.Action("KlantOverviewOnlyForEmployees", "Klant")'">
+            Cliënten
         </button>
 
     </div>
