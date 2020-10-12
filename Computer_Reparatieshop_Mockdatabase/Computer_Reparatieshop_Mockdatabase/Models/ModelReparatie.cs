@@ -34,6 +34,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public SelectListItem StoreChoiceReperateurFromDropDownList { get; set; }
 
+        public SelectListItem StoreChoicesOnderdelen { get; set; }
+
         [Display(Name = "Prijs producten")]
         public double PrijsProducten { get; set; }
 
@@ -43,7 +45,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public double Totaal { get; set; }
 
-        public List<PartModel> onderdelen { get; set; }
+        public PartModel onderdelen { get; set; }
 
     }
 

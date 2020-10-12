@@ -84,7 +84,7 @@
     </div>
 
     <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("AddNewopdracht")'">
-        Voeg nieuw onderdeel toe
+        Voeg een nieuwe opdracht toe
     </button>
 
     <table class="table">
@@ -125,71 +125,84 @@
         @foreach (var item in Model)
         {
 
-    <tr>
+            <tr>
 
 
-        <td>
-            @Html.DisplayFor(modelitem => item.StartDatum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.EindDatum)
-        </td>
-        @if (item.status.Text == "in afwachting")
-        {
-            <td style="color:red">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Text == "wachten op onderdelen")
-        {
-            <td style="color:yellow">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Text == "in behandeling")
-        {
-            <td style="color:green">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        @if (item.status.Text == "klaar")
-        {
-            <td style="color:blue">
-                @Html.DisplayFor(modelitem => item.status.Text)
-            </td>
-        }
-        <td>
-            @Html.DisplayFor(modelitem => item.Klant.GebruikersNaam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.Omschrijving)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.onderdelen.First().Name) ...
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.PrijsArbeid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.PrijsProducten)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.Reparateur.Naam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelitem => item.Totaal)
-        </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.StartDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.EindDatum)
+                </td>
+                @if (item.status.Text == "in afwachting")
+                {
+                    <td style="color:red">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Text == "wachten op onderdelen")
+                {
+                    <td style="color:yellow">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Text == "in behandeling")
+                {
+                    <td style="color:green">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                @if (item.status.Text == "klaar")
+                {
+                    <td style="color:blue">
+                        @Html.DisplayFor(modelitem => item.status.Text)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelitem => item.Klant.GebruikersNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Omschrijving)
+                </td>
+                @if (item.onderdelen == null)
+                {
+                <td>
+                    @Html.DisplayFor(modelitem => item.onderdelen)
+                </td>
+                }
+                else
+                {
+                    <td>
+                @Html.DisplayFor(modelitem => item.onderdelen.Name) 
+                   </td>
+                } 
+                <td>
+                    @Html.DisplayFor(modelitem => item.PrijsArbeid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.PrijsProducten)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Reparateur.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Totaal)
+                </td>
 
-        <td>
-            @Html.ActionLink("Verander gegevens", "ChangeDataOpdracht", new { id = item.Id }) |
-            <!--  @Html.ActionLink("Details", "Details", new { id = item.Id }) |-->
-            @Html.ActionLink("Verwijder opdracht", "DeleteOpdracht", new { id = item.Id })
-            @Html.ActionLink("Print Rekening", "Print", "Others", new { id = item.Id}, null)
-        </td>
-    </tr>
+                <td>
+                    @Html.ActionLink("Verander gegevens", "ChangeDataOpdracht", new { id = item.Id }) |
+                    <!--  @Html.ActionLink("Details", "Details", new { id = item.Id }) |-->
+                    @Html.ActionLink("Verwijder opdracht", "DeleteOpdracht", new { id = item.Id })
+                    @Html.ActionLink("Print Rekening", "Print", "Others", new { id = item.Id }, null)
+                    @Html.ActionLink("Bekijk reperateur gegevens", "RepereateurGegevens", new { id = item.Id }) <br />
+                    @Html.ActionLink("Bekijk client gegevens", "ClientGegevens", new { id= item.Id})
+                    @Html.ActionLink("Bekijk onderdelen gegevens", "OnderdelenGegevens", new { id = item.Id})
+                </td>
+            </tr>
         }
 
 
     </table>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
 </body>
 </html>

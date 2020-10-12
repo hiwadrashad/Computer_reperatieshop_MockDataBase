@@ -11,10 +11,18 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
     public class LoginController : Controller
     {
         // GET: WerknemerEnAdminLogin
+        public ActionResult LoginWerknemers()
+        {
+            return View();
+        }
+
+        public ActionResult LoginKlant()
+        {
+            return View();
+        }
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Autherize(AdminModel userModel)
         {
 
@@ -36,7 +44,6 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult AutherizeKlant(ClientModel userModel)
         {
             var UserDetails = SingletonData.Singleton.StoreKlant.Login(userModel.GebruikersNaam, userModel.Wachtwoord);

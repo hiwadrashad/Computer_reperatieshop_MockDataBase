@@ -73,30 +73,33 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelitem => item.omschrijving)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelitem => item.ClientLogin.GebruikersNaam)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelitem => item.Datum)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelitem => item.extrainformatie)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelitem => item.ophalen)
-                </td>
-                <td>
-                    @Html.ActionLink("Open image", "Openfile","Others", new { id = item.Id }, null)
-                </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelitem => item.omschrijving)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.StoredImage.ContentLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.ClientLogin.GebruikersNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.Datum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.extrainformatie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelitem => item.ophalen)
+        </td>
+        <td>
+            @Html.ActionLink("Open afbeelding", "ViewImage", "Others", new { id = item.Id }, null)
+        </td>
+        <td>
+            @Html.ActionLink("Open Client informatie", "ClientGegevens", new { id = item.Id })
+        </td>
 
-            </tr>
+    </tr>
         }
 
     </table>

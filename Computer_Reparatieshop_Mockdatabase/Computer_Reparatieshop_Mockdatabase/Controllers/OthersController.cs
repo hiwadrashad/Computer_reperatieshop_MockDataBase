@@ -10,7 +10,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
     public class OthersController : Controller
     {
         // GET: Others
-        public ActionResult Openfile(string id)
+        public ActionResult ViewImage(string id)
         {
             ViewBag.imgSrc = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
             return RedirectToAction("ViewImage", "Others");

@@ -21,6 +21,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             return View(SingletonData.Singleton.StoreClientRequest.ReturnList());
         }
 
+        public ActionResult ClientGegevens(string id)
+        {
+            return View(SingletonData.Singleton.StoreClientRequest.GetItem(id).ClientLogin);
+        }
+
 
         // GET: Request/Create
         public ActionResult AddNewBestelling()

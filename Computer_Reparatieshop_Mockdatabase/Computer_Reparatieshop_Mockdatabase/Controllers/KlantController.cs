@@ -79,11 +79,15 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult KlantOverviewOnlyForEmployees()
         {
+            return View(SingletonData.Singleton.StoreKlant.items.ToList());
+        }
+
+
+        public ActionResult ChooseLoginOrCreateAccountKlant()
+        {
             return View();
         }
 
 
-
-  
     }
 }

@@ -1,0 +1,126 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.ClientModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ClientGegevens</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 50px;
+            font-weight: bolder;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h4></h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.GebruikersNaam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.GebruikersNaam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Wachtwoord)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Wachtwoord)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Naam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Naam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Straatnaam)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Straatnaam)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.AdressNummer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AdressNummer)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PostCode)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PostCode)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Plaats)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Plaats)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.telefoonnummer)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.telefoonnummer)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        <button id="button" onclick="history.go(-1);">Go Back</button>
+        
+    </p>
+</body>
+</html>

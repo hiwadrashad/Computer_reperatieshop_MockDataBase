@@ -56,51 +56,99 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4></h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => Model.StartDatum)
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.EditorFor(model => Model.StartDatum)<br />
-                    @Html.ValidationMessageFor(model => Model.StartDatum)
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => Model.EindDatum)
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.EditorFor(model => Model.EindDatum)<br />
-                    @Html.ValidationMessageFor(model => Model.EindDatum)
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => Model.status)
-                <div class="col-md-offset-2 col-md-10">
-                    @Html.DropDownListFor(n => n.status.Text, new List<SelectListItem>
-               {
-               new SelectListItem { Text = "in afwachting", Value = "in afwachting"},
-               new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen"},
-               new SelectListItem { Text = "in behandeling", Value = "in behandeling"},
-               new SelectListItem { Text = "klaar", Value = "klaar"}
-               }
-               )
-                    @Html.ValidationMessageFor(model => Model.status)
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input id="button" type="submit" value="create" class="btn btn-default" />
-                </div>
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => Model.StartDatum)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => Model.StartDatum)<br />
+                @Html.ValidationMessageFor(model => Model.StartDatum)
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.EindDatum)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => Model.EindDatum)<br />
+                @Html.ValidationMessageFor(model => Model.EindDatum)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.Omschrijving)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => Model.Omschrijving)<br />
+                @Html.ValidationMessageFor(model => Model.Omschrijving)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.PrijsArbeid)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => Model.PrijsArbeid)<br />
+                @Html.ValidationMessageFor(model => Model.PrijsArbeid)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.PrijsProducten)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.EditorFor(model => Model.PrijsProducten)<br />
+                @Html.ValidationMessageFor(model => Model.PrijsProducten)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Klant)
+            <div class="col-md-10">
+                @Html.DropDownListFor(n => n.StoreChoiceKlantFromDropDownList.Value, (List<SelectListItem>)ViewBag.ClientDropDownlist)
+                @Html.ValidationMessageFor(model => model.Klant)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reparateur)
+            <div class="col-md-10">
+                @Html.DropDownListFor(n => n.StoreChoiceReperateurFromDropDownList.Value, (List<SelectListItem>)ViewBag.WerknemerDropDownList)
+                @Html.ValidationMessageFor(model => model.Reparateur)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.onderdelen)
+            <div class="col-md-10">
+                @Html.DropDownListFor(n => n.StoreChoicesOnderdelen, (List<SelectListItem>)ViewBag.OnderdelenDropDownList)
+                @Html.ValidationMessageFor(model => model.onderdelen)
+            </div>
+        </div>
+         
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.status)
+            <div class="col-md-offset-2 col-md-10">
+                @Html.DropDownListFor(n => n.status.Text, new List<SelectListItem>
+           {
+           new SelectListItem { Text = "in afwachting", Value = "in afwachting"},
+           new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen"},
+           new SelectListItem { Text = "in behandeling", Value = "in behandeling"},
+           new SelectListItem { Text = "klaar", Value = "klaar"}
+           }
+           )
+                @Html.ValidationMessageFor(model => Model.status)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="button" type="submit" value="create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
     }
-    <button id="button" onclick="history.go(-1);">Go Back</button>  @Html.ActionLink("Terug", null, null, null, new { href = Request.UrlReferrer })
+    <button id="button" onclick="history.go(-1);">Go Back</button>  
 
 </body>
 </html>

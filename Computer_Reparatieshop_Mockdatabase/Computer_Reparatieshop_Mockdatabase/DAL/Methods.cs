@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 
 namespace Computer_Reparatieshop_Mockdatabase.DAL
@@ -56,6 +57,21 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public ImageProcessing imageProcessing = new ImageProcessing();
     
     }
+
+    public static class Cloning
+    {
+        public static T DeepClone<T>(this T obj)
+        {
+            using (var ms = new MemoryStream())
+            {
+                var formatter = new BinaryFormatter();
+                formatter.Serialize(ms, obj);
+                ms.Position = 0;
+
+                return (T)formatter.Deserialize(ms);
+            }
+        }
+    }
     public class Print : Parent, Iprinting
     {
 
@@ -64,12 +80,12 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         {
 
             var modeltoprint = Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault();
-            string onderdelen = "";
-            foreach (var item in modeltoprint.onderdelen) { onderdelen = onderdelen + "@" + item.Name; }
+           // string onderdelen = "";
+           // foreach (var item in modeltoprint.onderdelen) { onderdelen = onderdelen + "@" + item.Name; }
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("host.pdf", FileMode.Create));
             doc.Open();
-            string storestring1 = "Klant: " + modeltoprint.Klant.Naam + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur.Naam + "@" + "Totaal Prijs: " + modeltoprint.Totaal + "@" + "Onderelen: " + onderdelen;
+            string storestring1 = "Klant: " + modeltoprint.Klant.Naam + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur.Naam + "@" + "Totaal Prijs: " + modeltoprint.Totaal + "@" + "Onderdelen: " + modeltoprint.onderdelen.Name;
             string addnewlines1 = storestring1.Replace("@", Environment.NewLine);
             Paragraph paragraph = new Paragraph(addnewlines1);
             paragraph.IndentationRight = 100;
@@ -111,6 +127,8 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             return countbar;
         }
     
+
+
     }
 
     public class ImageProcessing : Parent, IImageprocessing

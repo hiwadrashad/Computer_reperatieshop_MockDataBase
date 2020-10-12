@@ -17,6 +17,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         [Display(Name = "Aantal")]
         public int numberofpartsavailable { get; set; }
 
+        [Display(Name = "Kwaliteit")]
         public string qualityofpart { get; set; }
 
     }

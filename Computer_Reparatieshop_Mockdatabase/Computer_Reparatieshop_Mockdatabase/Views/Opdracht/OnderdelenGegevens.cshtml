@@ -1,0 +1,84 @@
+﻿@model Computer_Reparatieshop_Mockdatabase.Models.PartModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OnderdelenGegevens</title>
+    <style>
+
+        html, body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            background-image: url("../../Images/clearbackground.jpg");
+            display: table-cell;
+            vertical-align: middle;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50%;
+            color: dodgerblue;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+            font-size: large;
+        }
+
+        #button {
+            border-radius: 25px;
+            border: none;
+            color: white;
+            background-color: aqua;
+            height: 50px;
+            font-weight: bolder;
+            width: 250px;
+            margin: 10px 40px 10px 40px;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.numberofpartsavailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qualityofpart)
+            </th>
+            <th></th>
+        </tr>
+
+   
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.numberofpartsavailable)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.qualityofpart)
+                </td>
+
+            </tr>
+        
+
+    </table>
+    <button id="button" onclick="history.go(-1);">Go Back</button>
+</body>
+</html>
