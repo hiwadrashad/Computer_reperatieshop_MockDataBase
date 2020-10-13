@@ -207,7 +207,6 @@
     <Content Include="Views\Bestelling\AddNewBestelling.cshtml" />
     <Content Include="Views\Bestelling\BestellingenOverview.cshtml" />
     <Content Include="Views\Admin\Adminarea.cshtml" />
-    <Content Include="Views\Others\ViewImage.cshtml" />
     <Content Include="Views\Werknemer\WerknemerArea.cshtml" />
     <Content Include="Views\Admin\WerknemerOverviewOnlyForAdmin.cshtml" />
     <Content Include="Views\Admin\AddNewWerknemerOnlyForAdmin.cshtml" />
@@ -233,6 +232,7 @@
     <Content Include="Views\Login\LoginWerknemers.cshtml" />
     <Content Include="Views\Klant\ChooseLoginOrCreateAccountKlant.cshtml" />
     <Content Include="Views\Login\LoginKlant.cshtml" />
+    <Content Include="Views\Others\ViewImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

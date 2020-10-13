@@ -13,7 +13,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult ViewImage(string id)
         {
             ViewBag.imgSrc = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
-            return RedirectToAction("ViewImage", "Others");
+            return View();
         }
 
         public ActionResult Print(string id)
