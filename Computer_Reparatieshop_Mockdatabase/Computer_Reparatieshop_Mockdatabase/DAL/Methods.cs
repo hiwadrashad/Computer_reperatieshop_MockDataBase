@@ -18,9 +18,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public virtual void ExecutePrinting(string id)
         { }
 
-        public virtual Models.ModelStatus CountStatus()
+        public virtual ViewModel.ModelopdrachtViewModel CountStatus()
         {
-            Models.ModelStatus overview = new Models.ModelStatus();
+            ViewModel.ModelopdrachtViewModel overview = new ViewModel.ModelopdrachtViewModel();
             return overview; 
         }
 
@@ -40,7 +40,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public interface IOverview
     {
-        Models.ModelStatus CountStatus();
+        ViewModel.ModelopdrachtViewModel CountStatus();
     }
 
     public interface IImageprocessing
@@ -104,9 +104,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public class Overview : Parent, IOverview
     {
-        public override Models.ModelStatus CountStatus()
+        public override ViewModel.ModelopdrachtViewModel CountStatus()
         {
-            Models.ModelStatus countbar = new Models.ModelStatus();
+            ViewModel.ModelopdrachtViewModel countbar = new ViewModel.ModelopdrachtViewModel();
             foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in afwachting"))
             {
                 countbar.aantalinafwachting = countbar.aantalinafwachting + 1;

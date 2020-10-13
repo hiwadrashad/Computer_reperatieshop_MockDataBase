@@ -18,7 +18,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+
         public ActionResult KlantOverviewOnlyForEmployees(ClientModel clientModel)
         {
             SingletonData.Singleton.StoreKlant.UpdateItem(clientModel);

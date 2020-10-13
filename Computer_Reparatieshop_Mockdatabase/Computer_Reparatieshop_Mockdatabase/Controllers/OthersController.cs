@@ -1,4 +1,5 @@
 ﻿using Computer_Reparatieshop_Mockdatabase.SingletonData;
+using Computer_Reparatieshop_Mockdatabase.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,10 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Others
         public ActionResult ViewImage(string id)
         {
-            ViewBag.imgSrc = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
-            return View();
+            ViewImageViewModel viewImageViewModel = new ViewImageViewModel();
+            viewImageViewModel.StoreString64ByteArrayFromImage = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
+            //    ViewBag.imgSrc = Singleton.StoreFactory.imageProcessing.ConvertHttpPostfilebaseto64bytearray(id);
+            return View(viewImageViewModel);
         }
 
         public ActionResult Print(string id)

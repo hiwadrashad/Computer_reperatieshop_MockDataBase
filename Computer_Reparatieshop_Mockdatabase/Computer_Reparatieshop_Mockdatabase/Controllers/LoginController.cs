@@ -50,7 +50,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             if (UserDetails == true)
             {
                 SingletonData.Singleton.StoreKlantLoginData = userModel;
-                return RedirectToAction("CreateKlantAccount","Klant");
+                return RedirectToAction("AddNewBestelling","Bestelling");
             }
             userModel.LoginErrorMessage = "Wrong username or password";
             return RedirectToAction("LoginKlant", "Login");
