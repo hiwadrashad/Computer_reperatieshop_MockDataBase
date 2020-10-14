@@ -161,8 +161,7 @@
     <Compile Include="SingletonData\Singleton.cs" />
     <Compile Include="ViewModel\AddNewOpdrachtViewModel.cs" />
     <Compile Include="ViewModel\ChangeDataOpdrachtViewModel.cs" />
-    <Compile Include="ViewModel\ModelopdrachtViewModel.cs" />
-    <Compile Include="ViewModel\StatusBarViewModel.cs" />
+    <Compile Include="ViewModel\OpdrachtenOverviewViewModel.cs" />
     <Compile Include="ViewModel\ViewImageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

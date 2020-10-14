@@ -14,5 +14,7 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModel
         public List<SelectListItem> GenerateDropDownDataFromClients { get; set; }
 
         public List<SelectListItem> GenerateDropDownDataFromWerknemer { get; set; }
+
+        public Models.ModelReparatie ModelReparatie { get; set; }
     }
 }

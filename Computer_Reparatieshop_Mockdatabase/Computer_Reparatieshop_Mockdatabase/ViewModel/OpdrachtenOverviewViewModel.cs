@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Computer_Reparatieshop_Mockdatabase.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace Computer_Reparatieshop_Mockdatabase.ViewModel
 {
-    public class StatusBarViewModel
+    public class OpdrachtenOverviewViewModel
     {
         [Display(Name = "Aantal in afwachting")]
 
@@ -23,5 +24,7 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModel
         [Display(Name = "Aantal klaar")]
 
         public int aantaalklaar { get; set; }
+
+        public ModelReparatie modelReparatie { get; set; }
     }
 }

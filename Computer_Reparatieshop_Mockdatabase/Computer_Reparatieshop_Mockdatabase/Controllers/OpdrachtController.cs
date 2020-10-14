@@ -52,7 +52,6 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 addNewOpdrachtViewModel.GenerateDropDownDataFromPart.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
 
-
             //  ViewBag.ClientDrop
 
             foreach (var item in SingletonData.Singleton.StoreKlant.items)
@@ -71,14 +70,14 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // POST: Progress/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddNewopdracht(Models.ModelReparatie progressviewmodel)
+        public ActionResult AddNewopdracht(AddNewOpdrachtViewModel progressviewmodel)
         {
             try
             {
-                progressviewmodel.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
-                progressviewmodel.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
-                progressviewmodel.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.StoreChoicesOnderdelen.Value).FirstOrDefault();
-                SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel);
+                progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
+                progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
+                progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.ModelReparatie.StoreChoicesOnderdelen.Value).FirstOrDefault();
+                SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel.ModelReparatie);
                 // TODO: Add insert logic here
                 return RedirectToAction("OpdrachtenOverview");
             }
