@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie>
+﻿@model Computer_Reparatieshop_Mockdatabase.ViewModel.OpdrachtenOverviewViewModel
 
 @{
     Layout = null;
@@ -69,16 +69,16 @@
     <div class="navbar" id="header">
         <ul>
             <li id="list">
-                Aantal in afwachting @ViewBag.Bar.aantalinafwachting
+                Aantal in afwachting @Model.aantalinafwachting
             </li>
             <li id="list">
-                aantal wachten op onderdelen @ViewBag.Bar.aantalwachtoponderdelen
+                aantal wachten op onderdelen @Model.aantalwachtoponderdelen
             </li>
             <li id="list">
-                aantal in behandeling @ViewBag.Bar.aantalinbehandeling
+                aantal in behandeling @Model.aantalinbehandeling
             </li>
             <li id="list">
-                aantal klaar @ViewBag.Bar.aantaalklaar
+                aantal klaar @Model.aantaalklaar
             </li>
         </ul>
     </div>
@@ -122,7 +122,7 @@
 
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.modelReparatie)
         {
 
             <tr>
@@ -173,7 +173,7 @@
                 else
                 {
                     <td>
-                @Html.DisplayFor(modelitem => item.onderdelen.Name) 
+                @Html.DisplayFor(modelitem => item.onderdelen.FirstOrDefault().Name) 
                    </td>
                 } 
                 <td>

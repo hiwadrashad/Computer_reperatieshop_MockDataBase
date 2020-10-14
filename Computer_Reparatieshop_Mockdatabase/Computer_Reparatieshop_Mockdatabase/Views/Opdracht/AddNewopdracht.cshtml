@@ -104,7 +104,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ModelReparatie.Klant)
             <div class="col-md-10">
-                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceKlantFromDropDownList.Value, Model.GenerateDropDownDataFromClients)
+                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceKlantFromDropDownList.Value, (List<SelectListItem>)Model.GenerateDropDownDataFromClients)
                 @Html.ValidationMessageFor(model => model.ModelReparatie.Klant)
             </div>
         </div>
@@ -112,7 +112,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ModelReparatie.Reparateur)
             <div class="col-md-10">
-                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value, Model.GenerateDropDownDataFromWerknemer)
+                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value, (List<SelectListItem>)Model.GenerateDropDownDataFromWerknemer)
                 @Html.ValidationMessageFor(model => model.ModelReparatie.Reparateur)
             </div>
         </div>
@@ -120,7 +120,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ModelReparatie.onderdelen)
             <div class="col-md-10">
-                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoicesOnderdelen, Model.GenerateDropDownDataFromPart)
+                @Html.ListBoxFor(n => n.ModelReparatie.StoreChoicesOnderdelen, (List<SelectListItem>)Model.GenerateDropDownDataFromPart)
                 @Html.ValidationMessageFor(model => model.ModelReparatie.onderdelen)
             </div>
         </div>

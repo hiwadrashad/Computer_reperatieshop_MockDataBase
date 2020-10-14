@@ -18,9 +18,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public virtual void ExecutePrinting(string id)
         { }
 
-        public virtual ViewModel.ModelopdrachtViewModel CountStatus()
+        public virtual ViewModel.OpdrachtenOverviewViewModel CountStatus()
         {
-            ViewModel.ModelopdrachtViewModel overview = new ViewModel.ModelopdrachtViewModel();
+            ViewModel.OpdrachtenOverviewViewModel overview = new ViewModel.OpdrachtenOverviewViewModel();
             return overview; 
         }
 
@@ -40,7 +40,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public interface IOverview
     {
-        ViewModel.ModelopdrachtViewModel CountStatus();
+        ViewModel.OpdrachtenOverviewViewModel CountStatus();
     }
 
     public interface IImageprocessing
@@ -85,7 +85,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
             PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("host.pdf", FileMode.Create));
             doc.Open();
-            string storestring1 = "Klant: " + modeltoprint.Klant.Naam + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur.Naam + "@" + "Totaal Prijs: " + modeltoprint.Totaal + "@" + "Onderdelen: " + modeltoprint.onderdelen.Name;
+            string storestring1 = "Klant: " + modeltoprint.Klant.Naam + "@" + "omchrijving: " + modeltoprint.Omschrijving + "@" + "Prijs arbeid: " + modeltoprint.PrijsArbeid + "@" + "Prijs producten: " + modeltoprint.PrijsProducten + "@" + "Reperateur: " + modeltoprint.Reparateur.Naam + "@" + "Totaal Prijs: " + modeltoprint.Totaal + "@" + "Onderdelen: " + modeltoprint.onderdelen.First().Name;
             string addnewlines1 = storestring1.Replace("@", Environment.NewLine);
             Paragraph paragraph = new Paragraph(addnewlines1);
             paragraph.IndentationRight = 100;
@@ -104,9 +104,9 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     public class Overview : Parent, IOverview
     {
-        public override ViewModel.ModelopdrachtViewModel CountStatus()
+        public override ViewModel.OpdrachtenOverviewViewModel CountStatus()
         {
-            ViewModel.ModelopdrachtViewModel countbar = new ViewModel.ModelopdrachtViewModel();
+            ViewModel.OpdrachtenOverviewViewModel countbar = new ViewModel.OpdrachtenOverviewViewModel();
             foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status.Value == "in afwachting"))
             {
                 countbar.aantalinafwachting = countbar.aantalinafwachting + 1;
@@ -145,3 +145,5 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         }
     }
 }
+//ToDo
+// :: update pdf creation to list of parts

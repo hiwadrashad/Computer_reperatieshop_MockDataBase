@@ -1,4 +1,4 @@
-﻿@model Computer_Reparatieshop_Mockdatabase.Models.ModelReparatie
+﻿@model Computer_Reparatieshop_Mockdatabase.ViewModel.ChangeDataOpdrachtViewModel
 
 @{
     Layout = null;
@@ -59,88 +59,88 @@
         <h4></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ModelReparatie.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartDatum)
+            @Html.LabelFor(model => model.ModelReparatie.StartDatum)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDatum)<br />
-                @Html.ValidationMessageFor(model => model.StartDatum)
+                @Html.EditorFor(model => model.ModelReparatie.StartDatum)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.StartDatum)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EindDatum)
+            @Html.LabelFor(model => model.ModelReparatie.EindDatum)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EindDatum)<br />
-                @Html.ValidationMessageFor(model => model.EindDatum)
+                @Html.EditorFor(model => model.ModelReparatie.EindDatum)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.EindDatum)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Omschrijving)
+            @Html.LabelFor(model => model.ModelReparatie.Omschrijving)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Omschrijving)<br />
-                @Html.ValidationMessageFor(model => model.Omschrijving)
+                @Html.EditorFor(model => model.ModelReparatie.Omschrijving)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.Omschrijving)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrijsArbeid)
+            @Html.LabelFor(model => model.ModelReparatie.PrijsArbeid)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PrijsArbeid)<br />
-                @Html.ValidationMessageFor(model => model.PrijsArbeid)
+                @Html.EditorFor(model => model.ModelReparatie.PrijsArbeid)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.PrijsArbeid)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrijsProducten)
+            @Html.LabelFor(model => model.ModelReparatie.PrijsProducten)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PrijsProducten)<br />
-                @Html.ValidationMessageFor(model => model.PrijsProducten)
+                @Html.EditorFor(model => model.ModelReparatie.PrijsProducten)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.PrijsProducten)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Totaal)
+            @Html.LabelFor(model => model.ModelReparatie.Totaal)
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Totaal)<br />
-                @Html.ValidationMessageFor(model => model.Totaal)
+                @Html.EditorFor(model => model.ModelReparatie.Totaal)<br />
+                @Html.ValidationMessageFor(model => model.ModelReparatie.Totaal)
             </div>
         </div>
 
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Klant)
+            @Html.LabelFor(model => model.ModelReparatie.Klant)
             <div class="col-md-10">
-                @Html.DropDownListFor(n => n.StoreChoiceKlantFromDropDownList.Value, (List<SelectListItem>)ViewBag.ClientDropDownlist)
-                @Html.ValidationMessageFor(model => model.Klant)
+                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceKlantFromDropDownList.Value, (List<SelectListItem>)Model.GenerateDropDownDataFromClients)
+                @Html.ValidationMessageFor(model => model.ModelReparatie.Klant)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Reparateur)
+            @Html.LabelFor(model => model.ModelReparatie.Reparateur)
             <div class="col-md-10">
-                @Html.DropDownListFor(n => n.StoreChoiceReperateurFromDropDownList.Value, (List<SelectListItem>)ViewBag.WerknemerDropDownList)
-                @Html.ValidationMessageFor(model => model.Reparateur)
+                @Html.DropDownListFor(n => n.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value, (List<SelectListItem>)Model.GenerateDropDownDataFromWerknemer)
+                @Html.ValidationMessageFor(model => model.ModelReparatie.Reparateur)
             </div>
         </div>
 
 <!--
       <div class="form-group">
-         @Html.LabelFor(model => model.onderdelen)
+         @Html.LabelFor(model => model.ModelReparatie.onderdelen)
          <div class="col-md-10">
-             @Html.DropDownListFor(n => n.StoreChoicesOnderdelen, (List<SelectListItem>)ViewBag.OnderdelenDropDownList)
-             @Html.ValidationMessageFor(model => model.onderdelen)
+             @Html.DropDownListFor(n => n.ModelReparatie.StoreChoicesOnderdelen, (List<SelectListItem>)Model.GenerateDropDownDataFromPart)
+             @Html.ValidationMessageFor(model => model.ModelReparatie.onderdelen)
          </div>
      </div>
     -->
       
 
         <div class="form-group">
-            @Html.LabelFor(model => Model.status)
+            @Html.LabelFor(model => Model.ModelReparatie.status)
             <div class="col-md-offset-2 col-md-10">
-                @Html.DropDownListFor(n => n.status.Text, new List<SelectListItem>
+                @Html.DropDownListFor(n => n.ModelReparatie.status.Text, new List<SelectListItem>
            {
            new SelectListItem { Text = "in afwachting", Value = "in afwachting"},
            new SelectListItem { Text = "wachten op onderdelen", Value = "wachten op onderdelen"},
@@ -148,7 +148,7 @@
            new SelectListItem { Text = "klaar", Value = "klaar"}
            }
            )
-                @Html.ValidationMessageFor(model => Model.status)
+                @Html.ValidationMessageFor(model => Model.ModelReparatie.status)
             </div>
         </div>
 

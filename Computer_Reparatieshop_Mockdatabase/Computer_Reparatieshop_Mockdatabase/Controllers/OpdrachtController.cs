@@ -33,8 +33,10 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult OpdrachtenOverview()
         {
             //ModelopdrachtViewModel
-            ViewBag.Bar = Singleton.StoreFactory.overview.CountStatus();
-            return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
+            OpdrachtenOverviewViewModel opdrachtenOverviewViewModel = new OpdrachtenOverviewViewModel();
+            opdrachtenOverviewViewModel = Singleton.StoreFactory.overview.CountStatus();
+            opdrachtenOverviewViewModel.modelReparatie = Singleton.StoreReparationInProgress.ReturnList() ;
+            return View(opdrachtenOverviewViewModel);
         }
 
 
@@ -76,7 +78,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             {
                 progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
                 progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
-                progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.ModelReparatie.StoreChoicesOnderdelen.Value).FirstOrDefault();
+                List<PartModel> partModels = new List<PartModel>();
+                foreach (var item in progressviewmodel.ModelReparatie.StoreChoicesOnderdelen)
+                {
+                  var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item.Value).FirstOrDefault();
+                    progressviewmodel.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
+                }                
+               // progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.ModelReparatie.StoreChoicesOnderdelen.Value.FirstOrDefault());
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel.ModelReparatie);
                 // TODO: Add insert logic here
                 return RedirectToAction("OpdrachtenOverview");
@@ -90,46 +98,42 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Progress/Edit/5
         public ActionResult ChangeDataOpdracht(string id)
         {
-            List<SelectListItem> GenerateDropDownDataFromPart = new List<SelectListItem>();
+            ChangeDataOpdrachtViewModel changeDataOpdrachtViewModel = new ChangeDataOpdrachtViewModel();
+            changeDataOpdrachtViewModel.GenerateDropDownDataFromClients = new List<SelectListItem>();
+            changeDataOpdrachtViewModel.GenerateDropDownDataFromPart = new List<SelectListItem>();
+            changeDataOpdrachtViewModel.GenerateDropDownDataFromWerknemer = new List<SelectListItem>();
             foreach (var item in SingletonData.Singleton.StoreParts.items)
             {
-                GenerateDropDownDataFromPart.Add(new SelectListItem { Text = item.Name, Value = item.Name });
+                changeDataOpdrachtViewModel.GenerateDropDownDataFromPart.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
-
-            ViewBag.OnderdelenDropDownList = GenerateDropDownDataFromPart;
 
           //  ViewBag.ClientDrop
-         
-            List<SelectListItem> GenerateDropdDownDataFromClients = new List<SelectListItem>();
             foreach (var item in SingletonData.Singleton.StoreKlant.items)
             {
-                GenerateDropdDownDataFromClients.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
+                changeDataOpdrachtViewModel.GenerateDropDownDataFromClients.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
-            ViewBag.ClientDropDownlist = GenerateDropdDownDataFromClients;
 
-            List<SelectListItem> GenerateDropDownDataFromWerknemer = new List<SelectListItem>();
             foreach (var item in SingletonData.Singleton.StoreWerknemer.items)
             {
-                GenerateDropDownDataFromWerknemer.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
+                changeDataOpdrachtViewModel.GenerateDropDownDataFromWerknemer.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
-            ViewBag.WerknemerDropDownList = GenerateDropDownDataFromWerknemer;
-
+            changeDataOpdrachtViewModel.ModelReparatie = Singleton.StoreReparationInProgress.GetItem(id);
            
-            return View (Singleton.StoreReparationInProgress.GetItem(id));
+            return View (changeDataOpdrachtViewModel);
         }
 
         // POST: Progress/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ChangeDataOpdracht(Models.ModelReparatie model, int i = 0)
+        public ActionResult ChangeDataOpdracht(ChangeDataOpdrachtViewModel model, int i = 0)
         {
             try
             {
                 // TODO: Add update logic here
-                model.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
-                model.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
+                model.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.ModelReparatie.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
+                model.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
               //  model.onderdelen  = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == model.StoreChoicesOnderdelen.Value).FirstOrDefault();
-                SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model);
+                SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model.ModelReparatie);
                 return RedirectToAction("OpdrachtenOverview");
             }
             catch
