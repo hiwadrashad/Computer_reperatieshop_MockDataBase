@@ -23,7 +23,7 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModel
         public string StoreChoiceReperateurFromDropDownList { get; set; }
 
         [Required]
-        public IEnumerable<string> StoreChoicesOnderdelen { get; set; }
+        public string StoreChoicesOnderdelen { get; set; }
 
         public Models.ModelReparatie ModelReparatie { get; set; }
     }

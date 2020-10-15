@@ -47,7 +47,7 @@ namespace Computer_Reparatieshop_Mockdatabase.ViewModel
 
         public SelectListItem StoreChoiceReperateurFromDropDownList { get; set; }
 
-        public List<SelectListItem> StoreChoicesOnderdelen { get; set; }
+        public SelectListItem StoreChoicesOnderdelen { get; set; }
 
         [Display(Name = "Prijs producten")]
         public double PrijsProducten { get; set; }

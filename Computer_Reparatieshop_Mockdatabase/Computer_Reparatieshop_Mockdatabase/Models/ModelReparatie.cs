@@ -39,7 +39,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public double Totaal { get; set; }
 
-        public List<PartModel> onderdelen { get; set; }
+        public PartModel onderdelen { get; set; }
 
     }
 
