@@ -63,6 +63,7 @@
          color: white;
         }
 
+
     </style>
 </head>
 <body>
@@ -83,9 +84,7 @@
         </ul>
     </div>
 
-    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("AddNewopdracht")'">
-        Voeg een nieuwe opdracht toe
-    </button>
+
 
     <table class="table">
         <tr>
@@ -166,16 +165,16 @@
                 </td>
                 @if (item.onderdelen == null)
                 {
-                <td>
-                    @Html.DisplayFor(modelitem => item.onderdelen)
-                </td>
+                    <td>
+                        @Html.DisplayFor(modelitem => item.onderdelen)
+                    </td>
                 }
                 else
                 {
                     <td>
-                @Html.DisplayFor(modelitem => item.onderdelen.Name)
-                   </td>
-                } 
+                        @Html.DisplayFor(modelitem => item.onderdelen.Name)
+                    </td>
+                }
                 <td>
                     @Html.DisplayFor(modelitem => item.PrijsArbeid)
                 </td>
@@ -195,8 +194,8 @@
                     @Html.ActionLink("Verwijder opdracht", "DeleteOpdracht", new { id = item.Id })
                     @Html.ActionLink("Print Rekening", "Print", "Others", new { id = item.Id }, null)
                     @Html.ActionLink("Bekijk reperateur gegevens", "RepereateurGegevens", new { id = item.Id }) <br />
-                    @Html.ActionLink("Bekijk client gegevens", "ClientGegevens", new { id= item.Id})
-                    @Html.ActionLink("Bekijk onderdelen gegevens", "OnderdelenGegevens", new { id = item.Id})
+                    @Html.ActionLink("Bekijk client gegevens", "ClientGegevens", new { id = item.Id })
+                    @Html.ActionLink("Bekijk onderdelen gegevens", "OnderdelenGegevens", new { id = item.Id })
                 </td>
             </tr>
         }
@@ -204,5 +203,8 @@
 
     </table>
     <button id="button" onclick="history.go(-1);">Go Back</button>
+    <button id="button" value="Creëer nieuw model" onclick="location.href='@Url.Action("AddNewopdracht")'">
+        Voeg een nieuwe opdracht toe
+    </button>
 </body>
 </html>

@@ -3,6 +3,7 @@ using Computer_Reparatieshop_Mockdatabase.Models;
 using Computer_Reparatieshop_Mockdatabase.SingletonData;
 using Computer_Reparatieshop_Mockdatabase.ViewModel;
 using Microsoft.Ajax.Utilities;
+using Org.BouncyCastle.Crypto.Tls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,11 +82,18 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                 progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
                 //List<PartModel> partModels = new List<PartModel>();
                 //foreach (var item in progressviewmodel.StoreChoicesOnderdelen)
-               // {
-               //     var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
-               //     progressviewmodel.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
-               // }
-                 progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.StoreChoicesOnderdelen).FirstOrDefault();
+                // {
+                //     var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
+                //     progressviewmodel.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
+                // }
+                progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.StoreChoicesOnderdelen).FirstOrDefault();
+                progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable = progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable - 1;
+                if (progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable <= 0)
+                {
+
+                  return  Content("<script language='javascript' type='text/javascript'>alert('onderdeel is op!');</script>");
+           
+                } 
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel.ModelReparatie);
                 // TODO: Add insert logic here
                 return RedirectToAction("OpdrachtenOverview");
