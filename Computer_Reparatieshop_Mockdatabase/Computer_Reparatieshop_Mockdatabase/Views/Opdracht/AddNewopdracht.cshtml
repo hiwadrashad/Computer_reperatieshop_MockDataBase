@@ -122,7 +122,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ModelReparatie.onderdelen)
             <div class="col-md-10">
-                @Html.ListBoxFor(n => n.StoreChoicesOnderdelen, (List<SelectListItem>)Model.GenerateDropDownDataFromPart)
+                @Html.DropDownListFor(n => n.StoreChoicesOnderdelen, (List<SelectListItem>)Model.GenerateDropDownDataFromPart)
                 @Html.ValidationMessageFor(model => model.ModelReparatie.onderdelen)
             </div>
         </div>

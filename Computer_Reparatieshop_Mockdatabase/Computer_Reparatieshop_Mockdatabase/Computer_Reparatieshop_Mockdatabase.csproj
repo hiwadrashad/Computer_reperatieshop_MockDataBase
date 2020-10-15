@@ -154,6 +154,7 @@
     <Compile Include="Models\ModelReparatie.cs" />
     <Compile Include="Models\ModelStatus.cs" />
     <Compile Include="Models\OphalenJaNee.cs" />
+    <Compile Include="Models\ParentModel.cs" />
     <Compile Include="Models\PartModel.cs" />
     <Compile Include="Models\RolesWerknemer.cs" />
     <Compile Include="Models\WerknemerModel.cs" />
