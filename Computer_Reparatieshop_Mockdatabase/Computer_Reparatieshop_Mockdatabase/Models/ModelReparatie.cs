@@ -22,22 +22,13 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public DateTime? EindDatum { get; set; }
 
-        public SelectListItem status { get; set; }
+        public string status { get; set; }
 
         public string Omschrijving { get; set; }
 
         public  ClientModel Klant { get; set; }
 
-        [Required]
-        public SelectListItem StoreChoiceKlantFromDropDownList { get; set; }
-
         public WerknemerModel Reparateur { get; set; }
-
-        [Required]
-        public SelectListItem StoreChoiceReperateurFromDropDownList { get; set; }
-
-        [Required]
-        public IEnumerable<SelectListItem> StoreChoicesOnderdelen { get; set; }
 
         [Display(Name = "Prijs producten")]
         public double PrijsProducten { get; set; }

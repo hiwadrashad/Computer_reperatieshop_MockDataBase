@@ -76,15 +76,15 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
-                progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
+                progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.StoreChoiceKlantFromDropDownList).FirstOrDefault();
+                progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
                 List<PartModel> partModels = new List<PartModel>();
-                foreach (var item in progressviewmodel.ModelReparatie.StoreChoicesOnderdelen)
+                foreach (var item in progressviewmodel.StoreChoicesOnderdelen)
                 {
-                  var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item.Value).FirstOrDefault();
+                    var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
                     progressviewmodel.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
-                }                
-               // progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.ModelReparatie.StoreChoicesOnderdelen.Value.FirstOrDefault());
+                }
+                // progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.ModelReparatie.StoreChoicesOnderdelen.Value.FirstOrDefault());
                 SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel.ModelReparatie);
                 // TODO: Add insert logic here
                 return RedirectToAction("OpdrachtenOverview");
@@ -129,10 +129,16 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-                model.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.ModelReparatie.StoreChoiceKlantFromDropDownList.Value).FirstOrDefault();
-                model.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.ModelReparatie.StoreChoiceReperateurFromDropDownList.Value).FirstOrDefault();
-              //  model.onderdelen  = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == model.StoreChoicesOnderdelen.Value).FirstOrDefault();
+                List<PartModel> partModels = new List<PartModel>();
+                foreach (var item in model.StoreChoicesOnderdelen)
+                {
+                    var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
+                    model.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
+                }
+                model.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.StoreChoiceKlantFromDropDownList).FirstOrDefault();
+                model.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
+  
+                //  model.onderdelen  = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == model.StoreChoicesOnderdelen.Value).FirstOrDefault();
                 SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model.ModelReparatie);
                 return RedirectToAction("OpdrachtenOverview");
             }
