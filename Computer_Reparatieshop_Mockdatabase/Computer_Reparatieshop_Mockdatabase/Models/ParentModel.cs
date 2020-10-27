@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -27,6 +28,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
 
         public virtual string telefoonnummer { get; set; }
 
+        [NotMapped]
         public virtual HttpPostedFileBase Image { get; set; }
     }
 }

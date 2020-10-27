@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Models
         public string omschrijving { get; set; }
 
         [Display(Name = "opgeslagen foto")]
+        [NotMapped]
         public HttpPostedFileBase StoredImage { get; set; }
 
         [Display(Name = "Client")]
