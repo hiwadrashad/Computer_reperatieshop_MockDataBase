@@ -14,20 +14,20 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult ChangeDataKlantOnlyForEmployees(string id)
         {
-            return View(Singleton.StoreKlant.GetItem(id));
+            return View(Singleton.MockDataService2.GetKlant(id));
         }
 
         [HttpPost]
 
         public ActionResult KlantOverviewOnlyForEmployees(ClientModel clientModel)
         {
-            SingletonData.Singleton.StoreKlant.UpdateItem(clientModel);
+            SingletonData.Singleton.MockDataService2.UpdateKlant(clientModel);
             return RedirectToAction("KlantOverviewOnlyForEmployees");
         }
 
         public ActionResult DeleteDataKlantOnlyForEmployees(string id)
         {
-            return View(Singleton.StoreKlant.GetItem(id));
+            return View(Singleton.MockDataService2.GetKlant(id));
         }
 
         [HttpPost]
@@ -35,7 +35,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult DeleteDataKlantOnlyForEmployees(ClientModel clientModel)
         {
-            SingletonData.Singleton.StoreKlant.DeleteItem(clientModel.Id);
+            SingletonData.Singleton.MockDataService2.DeleteKlant(clientModel.Id);
             return RedirectToAction("KlantOverviewOnlyForEmployees");
         }
 
@@ -50,7 +50,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult CreateKlantAccount(ClientModel clientModel)
         {
 
-            Singleton.StoreKlant.AddItem(clientModel);
+            Singleton.MockDataService2.AddKlant(clientModel);
             return RedirectToAction("ChooseLoginOrCreateAccountKlant");
         }
 
@@ -67,7 +67,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                SingletonData.Singleton.StoreKlant.UpdateItem(clientModel);
+                SingletonData.Singleton.MockDataService2.UpdateKlant(clientModel);
                 return RedirectToAction("ChooseLoginOrCreateAccountKlant");
             }
             catch
@@ -79,7 +79,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult KlantOverviewOnlyForEmployees()
         {
-            return View(SingletonData.Singleton.StoreKlant.items.ToList());
+            return View(SingletonData.Singleton.MockDataService2.GetAllKlanten());
         }
 
 

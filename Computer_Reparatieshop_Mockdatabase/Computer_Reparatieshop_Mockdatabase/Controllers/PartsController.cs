@@ -14,7 +14,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult OnderdelenOverview()
         {
-            return View(Singleton.StoreParts.items.ToList());
+            return View(Singleton.MockDataService2.GetAllOnderdeel().ToList());
         }
         public ActionResult VoegNieuwOnderdeelToe()
         {
@@ -27,7 +27,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                Singleton.StoreParts.AddItem(partModel);
+                Singleton.MockDataService2.AddOnderdeel(partModel);
                 return RedirectToAction("OnderdelenOverview");
             }
             catch
@@ -39,7 +39,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult VeranderDataOnderdeeel(string id)
         {
-            return View(Singleton.StoreParts.GetItem(id));
+            return View(Singleton.MockDataService2.GetOnderdeel(id));
         }
 
         [HttpPost]
@@ -48,7 +48,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                Singleton.StoreParts.UpdateItem(partModel);
+                Singleton.MockDataService2.UpdateOnderdeel(partModel);
                 return RedirectToAction("OnderdelenOverview");
             }
             catch
@@ -59,7 +59,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
         public ActionResult DeleteOnderdeel(string id)
         {
-            return View(Singleton.StoreParts.GetItem(id));
+            return View(Singleton.MockDataService2.GetOnderdeel(id));
         }
 
         [HttpPost]
@@ -69,7 +69,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
             try
             {
-                Singleton.StoreParts.DeleteItem(partModel.id);
+                Singleton.MockDataService2.DeleteOnderdeel(partModel.id);
                 return RedirectToAction("OnderdelenOverview");
             }
             catch

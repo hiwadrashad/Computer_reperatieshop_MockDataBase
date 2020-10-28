@@ -26,8 +26,8 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult Autherize(AdminModel userModel)
         {
 
-            var UserDetails = SingletonData.Singleton.StoreLogin.Login(userModel.username, userModel.password);
-            var UserDetailsWerknemer = Singleton.StoreWerknemer.Login(userModel.username, userModel.password);
+            var UserDetails = SingletonData.Singleton.MockDataService2.LoginAdmin(userModel.username, userModel.password);
+            var UserDetailsWerknemer = Singleton.MockDataService2.LoginWerknemer(userModel.username, userModel.password);
             if (UserDetails == true)
             {
                 return RedirectToAction("Adminarea", "Admin");
@@ -35,7 +35,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             else if (UserDetailsWerknemer == true)
             {
                 var Werknemer = SingletonData.Singleton.StoreWerknemer.ReturnModelByNameAndPassword(userModel.username, userModel.password);
-                SingletonData.Singleton.StoreWerknemerLoginData = Werknemer;
+                SingletonData.Singleton.StoreWerknemerLoginData = usermo;
                 return RedirectToAction("WerknemerArea", "Werknemer");
             }
             userModel.LoginErrorMessage = "Wrong username or password";
@@ -46,7 +46,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         [HttpPost]
         public ActionResult AutherizeKlant(ClientModel userModel)
         {
-            var UserDetails = SingletonData.Singleton.StoreKlant.Login(userModel.GebruikersNaam, userModel.Wachtwoord);
+            var UserDetails = SingletonData.Singleton.MockDataService2.LoginKlant(userModel.GebruikersNaam, userModel.Wachtwoord);
             if (UserDetails == true)
             {
                 SingletonData.Singleton.StoreKlantLoginData = userModel;

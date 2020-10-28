@@ -33,7 +33,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
             try
             {
-                Singleton.StoreWerknemer.UpdateItem(werknemerModel);
+                Singleton.MockDataService2.UpdateWerknemer(werknemerModel);
                 return RedirectToAction("WerknemerArea");
             }
             catch

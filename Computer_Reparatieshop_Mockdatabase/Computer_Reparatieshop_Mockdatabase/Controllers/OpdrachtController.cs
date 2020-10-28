@@ -19,24 +19,24 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         // GET: Progress
         public ActionResult OnderdelenGegevens(string id)
         {
-            return View(SingletonData.Singleton.StoreReparationInProgress.GetItem(id).onderdelen);
+            return View(SingletonData.Singleton.MockDataService2.GetReparatie(id).onderdelen);
         }
 
         public ActionResult RepereateurGegevens(string id)
         {
-            return View(SingletonData.Singleton.StoreReparationInProgress.GetItem(id).Reparateur);
+            return View(SingletonData.Singleton.MockDataService2.GetReparatie(id).Reparateur);
         }
 
         public ActionResult ClientGegevens(string id)
         {
-            return View(SingletonData.Singleton.StoreReparationInProgress.GetItem(id).Klant);
+            return View(SingletonData.Singleton.MockDataService2.GetReparatie(id).Klant);
         }
         public ActionResult OpdrachtenOverview()
         {
             //ModelopdrachtViewModel
             OpdrachtenOverviewViewModel opdrachtenOverviewViewModel = new OpdrachtenOverviewViewModel();
             opdrachtenOverviewViewModel = Singleton.StoreFactory.overview.CountStatus();
-            opdrachtenOverviewViewModel.modelReparatie = Singleton.StoreReparationInProgress.ReturnList() ;
+            opdrachtenOverviewViewModel.modelReparatie = Singleton.MockDataService2.GetAllReparaties().ToList() ;
             return View(opdrachtenOverviewViewModel);
         }
 
@@ -50,19 +50,19 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             addNewOpdrachtViewModel.GenerateDropDownDataFromClients = new List<SelectListItem>();
             addNewOpdrachtViewModel.GenerateDropDownDataFromWerknemer = new List<SelectListItem>();
 
-            foreach (var item in SingletonData.Singleton.StoreParts.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllOnderdeel())
             {
                 addNewOpdrachtViewModel.GenerateDropDownDataFromPart.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
 
             //  ViewBag.ClientDrop
 
-            foreach (var item in SingletonData.Singleton.StoreKlant.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllKlanten())
             {
                 addNewOpdrachtViewModel.GenerateDropDownDataFromClients.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
 
-            foreach (var item in SingletonData.Singleton.StoreWerknemer.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllWerknemers())
             {
                 addNewOpdrachtViewModel.GenerateDropDownDataFromWerknemer.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
@@ -78,15 +78,15 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                 progressviewmodel.ModelReparatie.Totaal = progressviewmodel.ModelReparatie.PrijsArbeid + progressviewmodel.ModelReparatie.PrijsProducten;
-                progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == progressviewmodel.StoreChoiceKlantFromDropDownList).FirstOrDefault();
-                progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == progressviewmodel.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
+                progressviewmodel.ModelReparatie.Klant = SingletonData.Singleton.MockDataService2.GetAllKlanten().Where(x => x.Naam == progressviewmodel.StoreChoiceKlantFromDropDownList).FirstOrDefault();
+                progressviewmodel.ModelReparatie.Reparateur = SingletonData.Singleton.MockDataService2.GetAllWerknemers().Where(x => x.Naam == progressviewmodel.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
                 //List<PartModel> partModels = new List<PartModel>();
                 //foreach (var item in progressviewmodel.StoreChoicesOnderdelen)
                 // {
                 //     var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
                 //     progressviewmodel.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
                 // }
-                progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == progressviewmodel.StoreChoicesOnderdelen).FirstOrDefault();
+                progressviewmodel.ModelReparatie.onderdelen = SingletonData.Singleton.MockDataService2.GetAllOnderdeel().Where(x => x.Name == progressviewmodel.StoreChoicesOnderdelen).FirstOrDefault();
                 progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable = progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable - 1;
                 if (progressviewmodel.ModelReparatie.onderdelen.numberofpartsavailable <= 0)
                 {
@@ -94,7 +94,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
                   return  Content("<script language='javascript' type='text/javascript'>alert('onderdeel is op!');</script>");
            
                 } 
-                SingletonData.Singleton.StoreReparationInProgress.AddItem(progressviewmodel.ModelReparatie);
+                SingletonData.Singleton.MockDataService2.AddReparatie(progressviewmodel.ModelReparatie);
                 // TODO: Add insert logic here
                 return RedirectToAction("OpdrachtenOverview");
             }
@@ -111,22 +111,22 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             changeDataOpdrachtViewModel.GenerateDropDownDataFromClients = new List<SelectListItem>();
             changeDataOpdrachtViewModel.GenerateDropDownDataFromPart = new List<SelectListItem>();
             changeDataOpdrachtViewModel.GenerateDropDownDataFromWerknemer = new List<SelectListItem>();
-            foreach (var item in SingletonData.Singleton.StoreParts.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllOnderdeel())
             {
                 changeDataOpdrachtViewModel.GenerateDropDownDataFromPart.Add(new SelectListItem { Text = item.Name, Value = item.Name });
             }
 
           //  ViewBag.ClientDrop
-            foreach (var item in SingletonData.Singleton.StoreKlant.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllKlanten())
             {
                 changeDataOpdrachtViewModel.GenerateDropDownDataFromClients.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
 
-            foreach (var item in SingletonData.Singleton.StoreWerknemer.items)
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllWerknemers())
             {
                 changeDataOpdrachtViewModel.GenerateDropDownDataFromWerknemer.Add(new SelectListItem { Text = item.Naam, Value = item.Naam });
             }
-            changeDataOpdrachtViewModel.ModelReparatie = Singleton.StoreReparationInProgress.GetItem(id);
+            changeDataOpdrachtViewModel.ModelReparatie = Singleton.MockDataService2.GetReparatie(id);
            
             return View (changeDataOpdrachtViewModel);
         }
@@ -146,11 +146,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
               //      var SingleCoincidedPart = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == item).FirstOrDefault();
               //      model.ModelReparatie.onderdelen.Add(SingleCoincidedPart);
               //  }
-                model.ModelReparatie.Klant = SingletonData.Singleton.StoreKlant.items.Where(x => x.Naam == model.StoreChoiceKlantFromDropDownList).FirstOrDefault();
-                model.ModelReparatie.Reparateur = SingletonData.Singleton.StoreWerknemer.items.Where(x => x.Naam == model.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
+                model.ModelReparatie.Klant = SingletonData.Singleton.MockDataService2.GetAllKlanten().Where(x => x.Naam == model.StoreChoiceKlantFromDropDownList).FirstOrDefault();
+                model.ModelReparatie.Reparateur = SingletonData.Singleton.MockDataService2.GetAllWerknemers().Where(x => x.Naam == model.StoreChoiceReperateurFromDropDownList).FirstOrDefault();
   
-                model.ModelReparatie.onderdelen  = SingletonData.Singleton.StoreParts.items.Where(x => x.Name == model.StoreChoicesOnderdelen).FirstOrDefault();
-                SingletonData.Singleton.StoreReparationInProgress.UpdateItem(model.ModelReparatie);
+                model.ModelReparatie.onderdelen  = SingletonData.Singleton.MockDataService2.GetAllOnderdeel().Where(x => x.Name == model.StoreChoicesOnderdelen).FirstOrDefault();
+                SingletonData.Singleton.MockDataService2.UpdateReparatie(model.ModelReparatie);
                 return RedirectToAction("OpdrachtenOverview");
             }
             catch
@@ -164,7 +164,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult DeleteOpdracht(string id)
         {
             
-            return View(SingletonData.Singleton.StoreReparationInProgress.GetItem(id));
+            return View(SingletonData.Singleton.MockDataService2.GetReparatie(id));
         }
 
         // POST: Progress/Delete/5
@@ -175,7 +175,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                
-                var item = SingletonData.Singleton.StoreReparationInProgress.RemoveModelByModel(model);
+                var item = SingletonData.Singleton.MockDataService2.DeleteReparatie(model.Id);
                 // TODO: Add delete logic here
 
                 return RedirectToAction("OpdrachtenOverview");

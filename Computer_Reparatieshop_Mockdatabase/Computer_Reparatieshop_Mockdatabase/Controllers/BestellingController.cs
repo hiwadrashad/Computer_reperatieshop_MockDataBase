@@ -18,12 +18,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult BestellingenOverview()
         {
           
-            return View(SingletonData.Singleton.StoreClientRequest.ReturnList());
+            return View(SingletonData.Singleton.MockDataService2.GetAllBestellingen());
         }
 
         public ActionResult ClientGegevens(string id)
         {
-            return View(SingletonData.Singleton.StoreClientRequest.GetItem(id).ClientLogin);
+            return View(SingletonData.Singleton.MockDataService2.GetBestelling(id).ClientLogin);
         }
 
 
@@ -46,7 +46,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
 
                 model.ClientLogin = Singleton.StoreKlantLoginData;
                 
-                Singleton.StoreClientRequest.AddItem(model);
+                Singleton.MockDataService2.AddBestelling(model);
                 
                 return RedirectToAction("ChooseLoginOption", "StartPage");
             }

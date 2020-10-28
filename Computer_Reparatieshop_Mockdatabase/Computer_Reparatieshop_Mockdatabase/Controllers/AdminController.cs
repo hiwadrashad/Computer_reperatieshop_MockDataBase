@@ -20,7 +20,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult WerknemerOverviewOnlyForAdmin()
         {
 
-            return View(SingletonData.Singleton.StoreWerknemer.items.ToList());
+            return View(SingletonData.Singleton.MockDataService2.GetAllWerknemers().ToList());
         }
 
 
@@ -39,7 +39,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                 // TODO: Add insert logic here
-                SingletonData.Singleton.StoreWerknemer.AddItem(werknemerModel);
+                SingletonData.Singleton.MockDataService2.AddWerknemer(werknemerModel);
                 return RedirectToAction("WerknemerOverview");
             }
             catch
@@ -53,7 +53,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult ChangeDataWerknemerOnlyForAdmin(string id)
         {
            
-            return View(SingletonData.Singleton.StoreWerknemer.GetItem(id));
+            return View(SingletonData.Singleton.MockDataService2.GetWerknemer(id));
         }
 
       
@@ -65,7 +65,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                 // TODO: Add update logic here
-                SingletonData.Singleton.StoreWerknemer.UpdateItem(werknemerModel);
+                SingletonData.Singleton.MockDataService2.UpdateWerknemer(werknemerModel);
                 return RedirectToAction("WerknemerOverview");
             }
             catch
@@ -88,7 +88,7 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             try
             {
                 // TODO: Add delete logic here
-                SingletonData.Singleton.StoreWerknemer.DeleteItem(werknemerModel.Id);
+                SingletonData.Singleton.MockDataService2.DeleteWerknemer(werknemerModel.Id);
 
                 return RedirectToAction("WerknemerOverview");
             }

@@ -15,14 +15,10 @@ namespace Computer_Reparatieshop_Mockdatabase
         {
             if (SingletonData.Singleton.AllInitialized == false)
             {
-                SingletonData.Singleton.StoreClientRequest = new MockDataServiceClientRequest();
-                SingletonData.Singleton.StoreLogin = new MockDataserviceLogin();
-                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
-                SingletonData.Singleton.StoreReparationInProgress = new MockDataServiceReparationInProgress();
+                SingletonData.Singleton.MockDataService2 = MockDataService2.GetMockDataService2();
+
                 SingletonData.Singleton.StoreFactory = new Factory();
-                SingletonData.Singleton.StoreWerknemer = new MockDataServiceWerknemer();
-                SingletonData.Singleton.StoreKlant = new MockDataServiceKlant();
-                SingletonData.Singleton.StoreParts = new MockDataServiceStoreParts();
+
                 SingletonData.Singleton.AllInitialized = true;
             }
             AreaRegistration.RegisterAllAreas();

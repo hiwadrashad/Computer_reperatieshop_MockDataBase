@@ -20,11 +20,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         {
  
 
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().ToList())
             {
                 item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
-            return View(SingletonData.Singleton.StoreReparationInProgress.ReturnList());
+            return View(SingletonData.Singleton.MockDataService2.GetAllReparaties().ToList());
         }
 
         // GET: Done/Details/5
@@ -33,11 +33,11 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
         public ActionResult Details(string id)
         {
            
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().ToList())
             {
                 item.Totaal = item.PrijsArbeid + item.PrijsProducten;
             }
-            return View(SingletonData.Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault());
+            return View(SingletonData.Singleton.MockDataService2.GetAllReparaties().Where(x => x.Id == id).FirstOrDefault());
         }
 
         // GET: Done/Create
@@ -55,12 +55,12 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             {
                 // TODO: Add insert logic here
                 
-                foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList())
+                foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().ToList())
                 {
                     item.Totaal = item.PrijsArbeid + item.PrijsProducten;
                 }
 
-                SingletonData.Singleton.StoreReparationInProgress.AddItem(model);
+                SingletonData.Singleton.MockDataService2.AddReparatie(model);
                 return RedirectToAction("Index");
             }
             catch

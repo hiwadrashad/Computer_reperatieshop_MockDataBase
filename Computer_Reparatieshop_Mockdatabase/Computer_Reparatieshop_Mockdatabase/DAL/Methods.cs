@@ -15,13 +15,14 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 {
     public class Parent
     {
+
         public virtual void ExecutePrinting(string id)
         { }
 
         public virtual ViewModel.OpdrachtenOverviewViewModel CountStatus()
         {
             ViewModel.OpdrachtenOverviewViewModel overview = new ViewModel.OpdrachtenOverviewViewModel();
-            return overview; 
+            return overview;
         }
 
         public virtual string ConvertHttpPostfilebaseto64bytearray(string id)
@@ -32,7 +33,6 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
 
     }
-
     public interface Iprinting
     {
       void ExecutePrinting(string id);
@@ -79,7 +79,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public override void ExecutePrinting(string id)
         {
 
-            var modeltoprint = Singleton.StoreReparationInProgress.items.Where(x => x.Id == id).FirstOrDefault();
+            var modeltoprint = Singleton.MockDataService2.GetAllReparaties().Where(x => x.Id == id).FirstOrDefault();
            // string onderdelen = "";
            // foreach (var item in modeltoprint.onderdelen) { onderdelen = onderdelen + "@" + item.Name; }
             Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
@@ -107,19 +107,19 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public override ViewModel.OpdrachtenOverviewViewModel CountStatus()
         {
             ViewModel.OpdrachtenOverviewViewModel countbar = new ViewModel.OpdrachtenOverviewViewModel();
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == "in afwachting"))
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().Where(x => x.status == "in afwachting"))
             {
                 countbar.aantalinafwachting = countbar.aantalinafwachting + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == "wachten op onderdelen"))
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().Where(x => x.status == "wachten op onderdelen"))
             {
                 countbar.aantalwachtoponderdelen = countbar.aantalwachtoponderdelen + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == "in behandeling"))
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().Where(x => x.status == "in behandeling"))
             {
                 countbar.aantalinbehandeling = countbar.aantalinbehandeling + 1;
             }
-            foreach (var item in SingletonData.Singleton.StoreReparationInProgress.ReturnList().Where(x => x.status == "klaar"))
+            foreach (var item in SingletonData.Singleton.MockDataService2.GetAllReparaties().Where(x => x.status == "klaar"))
             {
                 countbar.aantaalklaar = countbar.aantaalklaar + 1;
             }
@@ -131,11 +131,29 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
 
     }
 
+    public class MemoryPostedFile : HttpPostedFileBase
+    {
+        private readonly byte[] fileBytes;
+
+        public MemoryPostedFile(byte[] fileBytes, string fileName = null)
+        {
+            this.fileBytes = fileBytes;
+            this.FileName = fileName;
+            this.InputStream = new MemoryStream(fileBytes);
+        }
+
+        public override int ContentLength => fileBytes.Length;
+
+        public override string FileName { get; }
+
+        public override Stream InputStream { get; }
+    }
+
     public class ImageProcessing : Parent, IImageprocessing
     {
         public override string ConvertHttpPostfilebaseto64bytearray(string id)
         {
-            var model = Singleton.StoreClientRequest.GetItem(id);
+            var model = Singleton.MockDataService2.GetBestelling(id);
             MemoryStream target = new MemoryStream();
             model.StoredImage.InputStream.CopyTo(target);
             byte[] data = target.ToArray();
