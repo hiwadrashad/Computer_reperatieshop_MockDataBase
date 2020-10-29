@@ -313,7 +313,7 @@ namespace Computer_Reparatieshop_Mockdatabase.DAL
         public bool LoginWerknemer(string username, string password)
         {
         
-           if (_werknemers.Where(a => a.Naam == username && a.password == password).FirstOrDefault() != null)
+           if (_werknemers.Where(a => a.username == username && a.password == password).FirstOrDefault() != null)
            {
                return true;
            }

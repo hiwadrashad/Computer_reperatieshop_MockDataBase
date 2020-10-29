@@ -34,13 +34,14 @@ namespace Computer_Reparatieshop_Mockdatabase.Controllers
             }
             else if (UserDetailsWerknemer == true)
             {
-                var Werknemer = SingletonData.Singleton.StoreWerknemer.ReturnModelByNameAndPassword(userModel.username, userModel.password);
-                SingletonData.Singleton.StoreWerknemerLoginData = usermo;
+
+                var Werknemer = SingletonData.Singleton.MockDataService2.GetWerknemerByPasswordAndUsername(userModel.username, userModel.password);
+                SingletonData.Singleton.StoreWerknemerLoginData = Werknemer;
                 return RedirectToAction("WerknemerArea", "Werknemer");
+
             }
             userModel.LoginErrorMessage = "Wrong username or password";
-            return RedirectToAction("Login", "Login");
-
+            return RedirectToAction("LoginWerknemers", "Login");
         }
 
         [HttpPost]
